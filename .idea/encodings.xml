@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/panda-business/service-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-business/service-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-config/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-serivce-business/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-serivce-business/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-service-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-service-auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-service-olap/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/panda-service/panda-service-olap/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

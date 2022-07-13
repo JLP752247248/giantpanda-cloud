@@ -1,0 +1,6 @@
+# Project exclude paths
+/panda-common/target/
+/panda-gateway/target/
+/panda-service/eureka-server/target/
+/panda-service/panda-serivce-business/target/
+/panda-service/panda-service-olap/target/

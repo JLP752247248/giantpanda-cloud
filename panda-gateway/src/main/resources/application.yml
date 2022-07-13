@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+spring:
+  application:
+    name: service-zuul
+zuul:
+  prefix: /api
+  routes:
+    api-b:
+      path: /business/**
+      url: http://localhost:8081   # http://localhost:8769/api/business/business/panda/api/test/t1
+      serviceId: panda-service-business
