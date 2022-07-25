@@ -2,20 +2,40 @@ package com.panda.service.business.controller.test;
 
 
 import com.panda.common.mvc.Response;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
-@Controller
-@RequestMapping(value = "/panda/api/test")
+@RestController
+@RefreshScope
 public class TestController {
 
+    @Value("${server.port}")
+    private String port;
+
+    @Value("${test.conf}")
+    private String testconf;
+
+
+    @GetMapping(value = "/echo/{message}")
+    public String echo(@PathVariable String message) {
+        return "Hello Nacos Discovery " + message + " , From port :" + port;
+    }
+
+    @GetMapping(value = "/echo1")
+    public String echo1(String message) {
+        return "Hello Nacos Discovery "  + " , From port :" + 8081;
+    }
+
+    @GetMapping(value = "/echo2")
+    public Response<String> echo2(String message) {
+        return Response.createSuc("200");
+    }
 
     @RequestMapping(value = "/t1", method = RequestMethod.GET)
-    @ResponseBody
     public Response<String> testmap(){
-        return Response.createSuc("100");
+        return Response.createSuc(testconf);
     }
 }

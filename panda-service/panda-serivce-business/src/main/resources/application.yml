@@ -1,12 +1,15 @@
+spring:
+  application:
+    name: business
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        ###服务注册地址
+        server-addr: localhost:8848
+      config:
+        file-extension: yaml #文件后缀名
+
 server:
   port: 8081
-  servlet:
-    context-path: /business
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost

@@ -1,16 +1,29 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8769
 spring:
   application:
-    name: service-zuul
-zuul:
-  prefix: /api
-  routes:
-    api-b:
-      path: /business/**
-      url: http://localhost:8081   # http://localhost:8769/api/business/business/panda/api/test/t1
-      serviceId: panda-service-business
+    # 应用名称
+    name: spring-gateway
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # 使用 Sentinel 作为熔断器
+    sentinel:
+      transport:
+        port: 8721
+        dashboard: 127.0.0.1:8081
+    # 路由网关配置
+    gateway:
+      # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          enabled: true
+
+server:
+  port: 9000
+
+
+# 配置日志级别，方别调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

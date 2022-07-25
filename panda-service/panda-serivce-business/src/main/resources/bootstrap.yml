@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml #文件后缀名
