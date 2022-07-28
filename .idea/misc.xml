@@ -11,7 +11,9 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/panda-api/pom.xml" />
         <option value="$PROJECT_DIR$/panda-business/pom.xml" />
+        <option value="$PROJECT_DIR$/panda-service/panda-service-auth/pom.xml" />
       </set>
     </option>
   </component>
