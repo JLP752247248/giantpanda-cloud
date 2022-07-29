@@ -29,6 +29,9 @@ public class RealFilterInvocationSecurityMetadataSource implements FilterInvocat
         testRoles.add("XXY");
         testRoles.add("XXZ");
         urlRoleMap.put("/syspros",testRoles);
+        Set<String> testRoles1 =new HashSet<>();
+        testRoles1.add("XXX1");
+        urlRoleMap.put("/getsys",testRoles1);
         LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
         for(String url : urlRoleMap.keySet()) {
             Set<String> needRoles = urlRoleMap.get(url);

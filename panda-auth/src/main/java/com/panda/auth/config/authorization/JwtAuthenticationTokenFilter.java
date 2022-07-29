@@ -16,7 +16,7 @@ import java.io.IOException;
  * Token拦截器
  * 使用Spring提供的OncePerRequestFilter保证单次
  */
-@Component
+//@Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
