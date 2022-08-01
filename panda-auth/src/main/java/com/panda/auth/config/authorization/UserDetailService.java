@@ -1,4 +1,4 @@
-package com.panda.auth.config;
+package com.panda.auth.config.authorization;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

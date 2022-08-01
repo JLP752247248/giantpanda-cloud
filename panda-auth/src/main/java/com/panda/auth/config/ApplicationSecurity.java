@@ -40,6 +40,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .failureForwardUrl("/login/failure")
+                .successForwardUrl("/login/success")
                 .permitAll()
                 .and()
                 .logout()
@@ -50,7 +52,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(14 * 24 * 60 * 60);
         //加入自定义的权限拦截器
         http.addFilterAfter(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
+        //http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
     @Autowired

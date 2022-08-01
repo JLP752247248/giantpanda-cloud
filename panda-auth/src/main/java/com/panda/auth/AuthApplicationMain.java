@@ -9,3 +9,4 @@ public class AuthApplicationMain {
         SpringApplication.run(AuthApplicationMain.class, args);
     }
 }
+
