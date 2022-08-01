@@ -12,7 +12,7 @@ public class PhoneValidator {
 
     private static int MAX_PHONE_LENGTH = 50;
 
-    private static final String PHONE_REGEX = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+    private static final String PHONE_REGEX = "^((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))\\d{8}$";
 
     private Pattern pattern;
 

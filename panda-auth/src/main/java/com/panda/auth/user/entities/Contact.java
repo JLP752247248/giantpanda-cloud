@@ -15,7 +15,7 @@ public class Contact {
 
     @Id
     @Column(name="user_id")
-    private Long userId;
+    private String userId;
 
     @Column(name="email", nullable = false)
     private String email;

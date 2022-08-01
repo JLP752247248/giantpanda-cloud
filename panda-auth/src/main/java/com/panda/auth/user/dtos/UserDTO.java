@@ -69,7 +69,7 @@ public class UserDTO implements Serializable {
         }
     }
 
-    private Long id;
+    private String id;
     private String username;
     private String name;
     private String surname;

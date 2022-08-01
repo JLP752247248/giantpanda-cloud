@@ -17,6 +17,7 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -33,8 +34,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+        http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -47,7 +49,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .key(DEFAULT_REMEMBER_ME_KEY)
                 .rememberMeServices(persistentTokenBasedRememberMeServices())
-                .tokenValiditySeconds(14 * 24 * 60 * 60);
+                .tokenValiditySeconds(14 * 24 * 60 * 60)
+                ;
         //加入自定义的权限拦截器
         http.addFilterAfter(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);

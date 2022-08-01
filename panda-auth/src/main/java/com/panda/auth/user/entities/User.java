@@ -14,9 +14,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "uuid")
     @Column(name="id")
-    private Long id;
+    private String id;
 
     @Column(name="username", nullable = false)
     private String username;

@@ -60,7 +60,7 @@ public class UserService {
         return listDto;
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(String id) {
         if (id == null) {
             throw new InvalidUserIdentifierException("User Id cannot be null");
         }
@@ -243,7 +243,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(Long id, CreateOrUpdateUserDTO updateUserDTO) {
+    public User updateUser(String id, CreateOrUpdateUserDTO updateUserDTO) {
         if (id == null) {
             throw new InvalidUserIdentifierException("Id cannot be null");
         }
@@ -339,7 +339,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUserById(Long id) {
+    public void deleteUserById(String id) {
         if (id == null) {
             throw new InvalidUserIdentifierException("Id cannot be null");
         }
@@ -395,7 +395,7 @@ public class UserService {
     // add or remove a role on user
 
     @Transactional
-    public User addRole(Long id, Long roleId) {
+    public User addRole(String id, Long roleId) {
         // check user
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
@@ -421,7 +421,7 @@ public class UserService {
     }
 
     @Transactional
-    public User removeRole(Long id, Long roleId) {
+    public User removeRole(String id, Long roleId) {
         // check user
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
