@@ -10,7 +10,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * api文档配置Knife4j
+ * @Author: JLP
+ * @CreateTime: 2022-08-01  11:19
+ * @Description: api文档配置Knife4j
+ * @Version: 1.0
  */
 @Configuration
 @EnableSwagger2

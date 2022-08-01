@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.management.relation.RoleNotFoundException;
 
 /**
- * Handles the exceptions globally in this microservice
+ * @Author: JLP
+ * @CreateTime: 2022-08-01  11:19
+ * @Description: Handles the exceptions globally in this microservice
+ * @Version: 1.0
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
