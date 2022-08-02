@@ -1,0 +1,230 @@
+body {
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightcyan;
+    font-family: 华文中宋;
+    margin: 0;
+}
+
+ul,
+li,
+span {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+ul {
+    padding: 0px;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+table tbody tr td {
+    display: inline-block;
+}
+
+.btn {
+    width: 80px;
+    height: 30px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+a:hover {
+    color: rebeccapurple;
+}
+
+.btn:hover {
+    border: solid 1px yellowgreen;
+    background-color: aqua;
+}
+
+.middle_btn {
+    width: 120px;
+    height: 40px;
+}
+
+.large_btn {
+    width: 200px;
+    height: 50px;
+}
+
+.bgc_success {
+    background-color: greenyellow;
+}
+
+.bgc_info {
+    background-color: lightgreen;
+}
+
+.bgc_sub {
+    background-color: navy;
+}
+
+.bgc_canel {
+    background-color: #008CBA;
+}
+
+.bgc_warning {
+    background-color: orangered;
+}
+
+.btn_full {
+    width: 100%;
+    height: 100%;
+}
+
+.pageLabel {
+    color: lightcyan;
+    background-color: tan;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    font-family: cursive;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.active {
+    display: none;
+    width: 0;
+}
+
+.left200 {
+    margin-left: 200px;
+}
+
+.app {
+    background-color: aqua;
+    min-width: 600px;
+    min-height: 600px;
+}
+
+a {
+    display: inline-block;
+    color: blue;
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0;
+    text-align: right;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#logindiv {
+    position: absolute;
+    background-color: beige;
+    width: 500px;
+    min-height: 330px;
+    top: 200px;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -250px;
+    display: inline-block;
+}
+
+form {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+
+#loginform {
+    display: inline-block;
+    width: 100%;
+    background-color: aquamarine;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+#loginform li {
+    margin: 1px auto;
+}
+
+.label {
+    width: 60px;
+    height: 38px;
+    line-height: 38px;
+    box-sizing: border-box;
+}
+
+#loginform input {
+    width: 250px;
+    height: 38px;
+    line-height: 38px;
+    box-sizing: border-box;
+    border: 1px solid #9eb2cd;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px #dedede inset;
+    font-size: 14px;
+}
+
+#login_inputgroup {
+    display: block;
+    margin: 30px auto;
+}
+
+#loginsub {
+    display: inline-block;
+    width: 100%;
+    height: 100px;
+}
+
+#loginsub ul {
+    width: 320px;
+    height: 40px;
+    box-sizing: border-box;
+    display: block;
+    margin: 20px auto;
+}
+
+#loginsub li {
+    box-sizing: border-box;
+    width: 100%;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+#checkCode {
+    display: inline-block;
+    height: 30px;
+    width: 49%;
+    cursor: pointer;
+}
+
+.code {
+    font-family: Arial;
+    font-style: italic;
+    color: blue;
+    font-size: 30px;
+    border: 0;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #D8B7E3;
+}
+
+.verify-box {
+    display: inline-block;
+    width: 45%;
+    height: 38px;
+    line-height: 38px;
+}

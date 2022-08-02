@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>vedios</title>
+	<style type="text/css">
+	.container{
+		width:100%;
+		max-width:100%;
+	}
+		a{
+		    font-size:50px;
+		}
+		video{
+			font-size:30px;
+		}
+		.vediopanel{
+			width:100%;
+			height:auto;
+			float:left;
+		}
+		.vediopanelcontent{
+		display:block;
+			overflow:auto;
+		}
+		.pageination{
+			width:100%;
+			hegith:50px;
+			display:block;
+		}
+	</style>
+</head>
+<body class="container">
+<br/>
+<h1>用户列表</h1>
+<br/><br/>
+
+<div class="modal-footer no-margin-top">
+    <div class="pagination pull-right no-margin">
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=10'">10条 </a>
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=20'">20条</a>
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=50'">50条</a>
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=100'">100条</a>
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=150'">150条</a>
+    	<a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0&pageSize=200'">200条</a>
+        <!-- 首页 -->
+        <li>
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0'">首页            </a>
+        	<a width="25p%" height="100px" th:text="${page.getNumber()+1}" ></a>
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getNumber()-1}" th:text="上一页"></a>
+        
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getNumber()+1}" th:text="下一页"></a>
+        
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getTotalPages() - 1}">尾页</a>
+        </li>
+		<li >
+			<a th:each="idx:${#numbers.sequence(0,totalPage-1)}" height="100px" align="left" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${idx}" th:text="'第' + ${idx+1} + '页'"></a>
+		</li>
+		
+    </div>
+    <div class="vediopanelcontent">
+    <div class="vediopanel" th:each="file : ${page.getContent()}">
+    	<div th:text="${file.name}" ></div>
+    	<div>
+    		<video style="width:100%;" th:src="'/ServOpenCloud/cloud/vedios/one?vId='+${file.name}" controls="controls" autoplay="autoplay">
+			您的浏览器不支持 video 标签。
+			</video>
+		</div>
+    </div>
+    </div>
+    <div class="pageination">
+        <!-- 首页 -->
+        <div>
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=0'">首页</a>
+       
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getNumber()-1}" th:text="上一页"></a>
+        
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getNumber()+1}" th:text="下一页"></a>
+        
+            <a width="25p%" height="100px" th:href="'/ServOpenCloud/cloud/vedios/page?pageNum=' + ${page.getTotalPages() - 1}">尾页</a>
+        </div>
+		
+		
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+#registdiv {
+    background-color: lightpink;
+    width: 80%;
+    max-width: 600px;
+    padding: 10px 20px;
+    margin: 10px auto;
+}
+
+#registdiv form {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#registdiv form td,
+#registdiv form input {
+    width: 100%;
+}
+
+#registgroup {
+    width: 100%;
+    height: 40px;
+    margin: 30px auto auto 0;
+}
+
+#registsub {
+    width: 100%;
+    height: 40px;
+    margin: 30px auto auto 0;
+}
+
+#registsub ul,
+#registsub li {
+    width: 100%;
+    height: 40px;
+}
+
+#registtable {
+    width: 100%;
+}
