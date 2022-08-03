@@ -29,10 +29,12 @@ public class Permission {
     private String permission;
 
     // enabled as default
-    @Column(name="enabled")
-    private boolean enabled = true;
+    @Column(name="enabled",columnDefinition = "TINYINT(1)")
+    private Integer enabled = 1;
 
-    @Column(name="note")
+    @Column(name="note" )
     private String note;
-
+    public boolean isEnabled(){
+        return this.enabled == 1 ;
+    }
 }

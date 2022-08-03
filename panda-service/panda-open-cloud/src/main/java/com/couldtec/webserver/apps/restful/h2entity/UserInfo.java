@@ -14,7 +14,6 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @Entity
-@Table(name="SYS_USER_INFO")
 public class UserInfo extends BaseObj{
 	/**
 	 * 

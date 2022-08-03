@@ -11,7 +11,7 @@ public class Address {
 
     @Id
     @Column(name="user_id")
-    private String userId;
+    private Long userId;
 
     @Column(name="address")
     private String address;

@@ -30,7 +30,7 @@ public class UserDTO implements Serializable {
 
             this.birthDate = user.getBirthDate();
 
-            this.enabled = user.isEnabled();
+            this.enabled = user.getEnabled();
 
             this.note = user.getNote();
 
@@ -38,7 +38,7 @@ public class UserDTO implements Serializable {
             this.updatedDt = user.getUpdatedDt();
             this.loginDt = user.getLoginDt();
 
-            this.secured = user.isSecured();
+            this.secured = user.getSecured();
 
             // contact, if set
             if (user.getContact() != null) {
@@ -69,14 +69,14 @@ public class UserDTO implements Serializable {
         }
     }
 
-    private String id;
+    private Long id;
     private String username;
     private String name;
     private String surname;
     private String gender;
     private java.time.LocalDate birthDate;
 
-    private boolean enabled;
+    private Integer enabled;
 
     private String note;
 
@@ -84,7 +84,7 @@ public class UserDTO implements Serializable {
     private LocalDateTime updatedDt;
     private LocalDateTime loginDt;
 
-    private boolean secured;
+    private Integer secured;
 
     private ContactDTO contactDTO;
     private AddressDTO addressDTO;

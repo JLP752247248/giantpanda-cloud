@@ -8,31 +8,20 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
   datasource:
-    url: jdbc:h2:mem:es-chanllenge;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    platform: h2
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+    driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         show_sql: true
         use_sql_comments: true
         format_sql: true
 
-  ##################
-  #   H2 Settings
-  ##################
-  h2:
-    console:
-      enabled: true
-      path: /console
-      settings:
-        trace: false
-        web-allow-others: false
 server:
   port: 8888
 

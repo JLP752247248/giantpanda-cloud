@@ -60,13 +60,13 @@ public class UserService {
         return listDto;
     }
 
-    public User getUserById(String id) {
+    public User getUserById(Long id) {
         if (id == null) {
             throw new InvalidUserIdentifierException("User Id cannot be null");
         }
-        Optional<User> userOpt = userRepository.findById(id);
-        if (userOpt.isPresent()) {
-            return userOpt.get();
+        User userOpt = userRepository.queryBuId(id);
+        if (userOpt!=null) {
+            return userOpt;
         }
         throw new UserNotFoundException(String.format("User not found for Id = %s", id));
     }
@@ -104,8 +104,8 @@ public class UserService {
 
         user.setName(registerUserAccountDTO.getName());
         user.setSurname(registerUserAccountDTO.getSurname());
-        user.setEnabled(true);
-        user.setSecured(false);
+        user.setEnabled(1);
+        user.setSecured(0);
 
         // set gender
         Gender gender = Gender.getValidGender(registerUserAccountDTO.getGender());
@@ -134,10 +134,10 @@ public class UserService {
     // check if the username has not been registered
     public void checkIfUsernameNotUsed(String username) {
         User userByUsername = getUserByUsername(username);
-            if (userByUsername != null) {
-                String msg = String.format("The username %s it's already in use from another user with ID = %s",
-                        userByUsername.getUsername(), userByUsername.getId());
-                log.error(msg);
+        if (userByUsername != null) {
+            String msg = String.format("The username %s it's already in use from another user with ID = %s",
+                    userByUsername.getUsername(), userByUsername.getId());
+            log.error(msg);
             throw new InvalidUserDataException(msg);
         }
     }
@@ -181,8 +181,8 @@ public class UserService {
         // date of birth
         user.setBirthDate(createUserDTO.getBirthDate());
 
-        user.setEnabled(true);
-        user.setSecured(createUserDTO.isSecured());
+        user.setEnabled(1);
+        user.setSecured(createUserDTO.getSecured());
 
         user.setNote(createUserDTO.getNote());
         user.setCreationDt(LocalDateTime.now());
@@ -243,7 +243,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(String id, CreateOrUpdateUserDTO updateUserDTO) {
+    public User updateUser(Long id, CreateOrUpdateUserDTO updateUserDTO) {
         if (id == null) {
             throw new InvalidUserIdentifierException("Id cannot be null");
         }
@@ -300,7 +300,7 @@ public class UserService {
         // date of birth
         user.setBirthDate(updateUserDTO.getBirthDate());
 
-        user.setEnabled(updateUserDTO.isEnabled());
+        user.setEnabled(updateUserDTO.getEnabled());
         user.setNote(updateUserDTO.getNote());
 
         // set contact: entity always present
@@ -339,7 +339,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUserById(String id) {
+    public void deleteUserById(Long id) {
         if (id == null) {
             throw new InvalidUserIdentifierException("Id cannot be null");
         }
@@ -351,7 +351,7 @@ public class UserService {
 
         // only not secured users can be deleted
         User user = userOpt.get();
-        if (user.isSecured()) {
+        if (user.getSecured()==1) {
             throw new UserIsSecuredException(String.format("User %s is secured and cannot be deleted.", id));
         }
 
@@ -376,7 +376,7 @@ public class UserService {
         // check the password
         if (EncryptionService.isPasswordValid(password, user.getPassword(), salt)) {
             // check if the user is enabled
-            if (!user.isEnabled()) {
+            if (!(user.getEnabled() == 1)) {
                 // not enabled
                 throw new InvalidLoginException("User is not enabled");
             }
@@ -395,7 +395,7 @@ public class UserService {
     // add or remove a role on user
 
     @Transactional
-    public User addRole(String id, Long roleId) {
+    public User addRole(Long id, Long roleId) {
         // check user
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
@@ -421,7 +421,7 @@ public class UserService {
     }
 
     @Transactional
-    public User removeRole(String id, Long roleId) {
+    public User removeRole(Long id, Long roleId) {
         // check user
         Optional<User> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {

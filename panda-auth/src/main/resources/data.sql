@@ -8,11 +8,11 @@ DELETE FROM contacts;
 DELETE FROM addresses;
 DELETE FROM users;
 
-INSERT INTO permissions(id, permission, note ,ENABLED) VALUES (1, 'LOGIN', 'User Login','TRUE');
-INSERT INTO permissions(id, permission, note,ENABLED) VALUES (2, 'VIEW_PROFILE', 'View user profile','TRUE');
-INSERT INTO permissions(id, permission, note,ENABLED) VALUES (3, 'ADMIN_USER_DATA', 'Manage user data','TRUE');
+INSERT INTO permissions(id, permission, note ,ENABLED) VALUES (1, 'LOGIN', 'User Login','1');
+INSERT INTO permissions(id, permission, note,ENABLED) VALUES (2, 'VIEW_PROFILE', 'View user profile','1');
+INSERT INTO permissions(id, permission, note,ENABLED) VALUES (3, 'ADMIN_USER_DATA', 'Manage user data','1');
 
-INSERT INTO permissions(id, permission, note, enabled) VALUES (4, 'ADMIN_STATISTICS', 'View statistical graphs', false);
+INSERT INTO permissions(id, permission, note, enabled) VALUES (4, 'ADMIN_STATISTICS', 'View statistical graphs', '0');
 
 INSERT INTO roles(id, role) VALUES (1, 'USER');
 INSERT INTO roles(id, role) VALUES (2, 'ADMINISTRATOR');

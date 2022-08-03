@@ -14,9 +14,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native", strategy = "uuid")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name="id")
-    private String id;
+    private Long id;
 
     @Column(name="username", nullable = false)
     private String username;
@@ -45,7 +45,7 @@ public class User {
     private Address address;
 
     @Column(name="enabled")
-    private boolean enabled;
+    private Integer enabled;
 
     @Column(name="note")
     private String note;
@@ -66,6 +66,6 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @Column(name="secured")
-    private boolean secured;
+    private Integer secured;
 
 }

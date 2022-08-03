@@ -32,29 +32,29 @@ public class UserRestController {
     }
 
     @GetMapping("/{id}")
-    public UserDTO getUserById(@PathVariable("id") String id) {
+    public UserDTO getUserById(@PathVariable("id") Long id) {
         return new UserDTO(userService.getUserById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable("id") String id, @RequestBody CreateOrUpdateUserDTO updateUserDTO) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable("id") Long id, @RequestBody CreateOrUpdateUserDTO updateUserDTO) {
         return new ResponseEntity(new UserDTO(userService.updateUser(id, updateUserDTO)), null, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") String id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
         return ResponseEntity.noContent().build();
     }
 
     // add or remove a Role on a user
     @PostMapping("/{id}/roles/{roleId}")
-    public ResponseEntity<UserDTO> addRole(@PathVariable("id") String id, @PathVariable("roleId") Long roleId) {
+    public ResponseEntity<UserDTO> addRole(@PathVariable("id") Long id, @PathVariable("roleId") Long roleId) {
         return new ResponseEntity(new UserDTO(userService.addRole(id, roleId)), null, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}/roles/{roleId}")
-    public ResponseEntity<UserDTO> removeRole(@PathVariable("id") String id, @PathVariable("roleId") Long roleId) {
+    public ResponseEntity<UserDTO> removeRole(@PathVariable("id") Long id, @PathVariable("roleId") Long roleId) {
         return new ResponseEntity(new UserDTO(userService.removeRole(id, roleId)), null, HttpStatus.OK);
     }
 

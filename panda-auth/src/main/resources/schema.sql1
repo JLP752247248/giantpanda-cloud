@@ -16,7 +16,7 @@ CREATE TABLE `roles` (
 CREATE TABLE `permissions` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `permission` varchar(80) NOT NULL UNIQUE,
-  enabled TINYINT DEFAULT '1',
+  enabled INT DEFAULT '1',
   note varchar(255) DEFAULT NULL
 );
 
@@ -34,22 +34,20 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `surname` varchar(100) DEFAULT NULL,
-  gender TINYINT DEFAULT NULL,
+  gender INT DEFAULT NULL,
   birth_date DATE DEFAULT NULL,
-  enabled TINYINT DEFAULT '1',
+  enabled INT DEFAULT '1',
   creation_dt timestamp NOT NULL DEFAULT current_timestamp,
   updated_dt timestamp DEFAULT current_timestamp,
   login_dt timestamp NULL,
   note varchar(255) DEFAULT NULL,
-  secured TINYINT DEFAULT '0'
+  secured INT DEFAULT '0'
 );
 
 CREATE TABLE users_roles (
   `user_id` BIGINT(20) NOT NULL,
   `role_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (user_id, role_id),
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (role_id) REFERENCES roles(id)
+  PRIMARY KEY (user_id, role_id)
 );
 
 CREATE TABLE `contacts` (
@@ -60,8 +58,7 @@ CREATE TABLE `contacts` (
   facebook varchar(255) DEFAULT NULL,
   linkedin varchar(255) DEFAULT NULL,
   website varchar(255) DEFAULT NULL,
-  note varchar(255) DEFAULT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  note varchar(255) DEFAULT NULL
 );
 
 CREATE TABLE `addresses` (
@@ -70,8 +67,7 @@ CREATE TABLE `addresses` (
   `address2` varchar(255) DEFAULT NULL,
   `city` varchar(20) DEFAULT NULL,
   `country` varchar(20) DEFAULT NULL,
-  `zip_code` varchar(20) DEFAULT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  `zip_code` varchar(20) DEFAULT NULL
 );
 
 DROP VIEW IF EXISTS enabled_users;

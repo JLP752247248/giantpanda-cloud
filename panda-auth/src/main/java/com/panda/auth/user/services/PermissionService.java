@@ -59,7 +59,7 @@ public class PermissionService {
         permission.setPermission(permissionKey);
 
         permission.setNote(permissionDTO.getNote());
-        permission.setEnabled(permissionDTO.isEnabled());
+        permission.setEnabled(permissionDTO.getEnabled());
 
         Permission createdPermission = permissionRepository.save(permission);
 
@@ -95,7 +95,7 @@ public class PermissionService {
 
         // update permission
         permission.setPermission(permissionDTO.getPermission());
-        permission.setEnabled(permissionDTO.isEnabled());
+        permission.setEnabled(permissionDTO.getEnabled());
         permission.setNote(permissionDTO.getNote());
 
         Permission updatedPermission = permissionRepository.save(permission);
