@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/panda-service/pom.xml" />
         <option value="$PROJECT_DIR$/panda-service/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/panda-service/panda-file-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

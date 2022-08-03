@@ -15,5 +15,12 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
+    <dependencies>
+        <!--腾讯云cosSDK-->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.75</version>
+        </dependency>
+    </dependencies>
 </project>
