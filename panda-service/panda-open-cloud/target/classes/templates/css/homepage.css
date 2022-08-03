@@ -1,0 +1,167 @@
+#vue_det {
+    border: 1px solid grey;
+    background-image: url("jpgs/神经网络.jpg");
+    height: 98%;
+}
+
+.headnav {
+    background-color: goldenrod;
+    width: 100%;
+    height: 40px;
+    min-width: 1024px;
+    background-image: url("jpgs/格子背景.JPG");
+}
+
+.headnav ul {
+    height: 40px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.headnav li {
+    cursor: pointer;
+}
+
+.leftnev {
+    background-color: bisque;
+}
+
+.leftnev ul,
+.leftnev li {
+    text-align: center;
+    width: 100%;
+}
+
+.leftnev li {
+    margin: 1px 0 0 0;
+    background-color: rgb(165, 82, 34);
+    border-radius: 5px;
+    border: solid 1px brown;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.leftnev li:hover {
+    margin: 1px 0 0 0;
+    background-color: palevioletred;
+    border-radius: 5px;
+    border: solid 1px brown;
+    cursor: pointer;
+}
+
+.leftnev span {
+    width: 100%;
+    line-height: 36px;
+    box-sizing: border-box;
+}
+
+.syslabel {
+    width: 200px;
+    background-image: url("jpgs/大数据平台.JPG");
+    background-size: 200px 40px;
+    opacity: 0.8;
+}
+
+.menugroup {
+    position: absolute;
+    display: inline-block;
+    width: 800px;
+}
+
+.menugroup li {
+    background-color: #0e1850e6;
+    color: azure;
+    border: solid 1px;
+    border-radius: 10px;
+    width: auto;
+    text-align: center;
+}
+
+.menugroup li:hover {
+    background-color: palevioletred;
+    color: azure;
+    border: solid 1px;
+    border-radius: 10px;
+    width: auto;
+    text-align: center;
+}
+
+.menugroup span {
+    line-height: 30px;
+    min-width: 80px;
+    padding: 4px 5px;
+}
+
+.sysconfiggroup {
+    position: absolute;
+    right: 1px;
+    background-color: azure;
+}
+
+.sysconfiggroup li {
+    width: auto;
+    height: 40px;
+    text-align: center;
+}
+
+.sysconfiggroup span {
+    padding: 5px;
+    text-align: center;
+}
+
+.sysconfiggroup input,
+.sysconfiggroup select {
+    border-radius: 10px;
+    height: 40px;
+    border: solid 1px royalblue;
+    display: inline-block;
+    width: 80px;
+    cursor: pointer;
+}
+
+.maincontent {
+    width: 100%;
+    height: 800px;
+    margin-left: 0;
+    bottom: 60px;
+    background-color: white;
+}
+
+.leftnev {
+    position: relative;
+    width: 200px;
+    min-height: 800px;
+    margin: 1px;
+    float: left;
+}
+
+.content {
+    position: relative;
+    /* margin: 0 0 0 200px; */
+    height: 100%;
+    width: auto;
+}
+
+.tail {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    background-image: url("jpgs/格子背景.JPG");
+}
+
+.copydeclare {
+    line-height: 50px;
+    text-align: right;
+}
+
+.copydeclare li {
+    padding: 0px;
+    display: inline-block;
+    position: absolute;
+}
+
+.container {
+    height: 100%;
+    display: inline-block;
+}
