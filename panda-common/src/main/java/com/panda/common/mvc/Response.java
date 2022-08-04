@@ -36,4 +36,20 @@ public class Response<T> {
         response.setSuccess(true);
         return response;
     }
+
+    public static <V> Response<V> createSuc(V data,String msg) {
+        Response<V> response = new Response<V>(data);
+        response.setMsg(msg);
+        response.setCode(200);
+        response.setSuccess(true);
+        return response;
+    }
+
+    public static <V> Response<V> createErr(V data) {
+        Response<V> response = new Response<V>(data);
+        response.setMsg("失败");
+        response.setCode(500);
+        response.setSuccess(true);
+        return response;
+    }
 }
