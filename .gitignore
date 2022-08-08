@@ -4,3 +4,4 @@
 /panda-service/eureka-server/target/
 /panda-service/panda-serivce-business/target/
 /panda-service/panda-service-olap/target/
+/panda-service/panda-file-server/src/main/resources/application.yml
