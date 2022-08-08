@@ -15,6 +15,8 @@ public class UserDetailService implements UserDetailsService {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String pwd = encoder.encode("123");
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

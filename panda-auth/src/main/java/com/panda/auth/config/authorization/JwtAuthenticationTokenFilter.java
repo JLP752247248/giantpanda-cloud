@@ -1,6 +1,11 @@
 package com.panda.auth.config.authorization;
 
+import com.alibaba.fastjson.JSONObject;
+import com.panda.auth.util.TokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -18,7 +23,8 @@ import java.io.IOException;
  */
 //@Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
         //获取token
@@ -28,12 +34,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
             return;
         }
-        //解析token
 
+        UsernamePasswordAuthenticationToken authenticationToken = TokenUtil.tokenMap.get(token);
+        if(authenticationToken == null){
+            //没有token 放行 后续过滤器会进行校验
+            filterChain.doFilter(request,response);
+            return;
+        }
         //获取用户信息
 
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(null, null, null);
+        //UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(null, null, null);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         //放行
         filterChain.doFilter(request,response);

@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -32,6 +32,12 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     private final static String DEFAULT_REMEMBER_ME_KEY = "default remember me key";
 
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -39,9 +45,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .failureForwardUrl("/login/failure")
-                .successForwardUrl("/login/success")
+                .oauth2Login()
+                .loginPage("/login/oauth2")
+                .successHandler(authenticationSuccessHandler)
                 .permitAll()
                 .and()
                 .logout()
@@ -50,14 +56,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .key(DEFAULT_REMEMBER_ME_KEY)
                 .rememberMeServices(persistentTokenBasedRememberMeServices())
                 .tokenValiditySeconds(14 * 24 * 60 * 60)
-                ;
+        ;
         //加入自定义的权限拦截器
         http.addFilterAfter(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+
 
     private RememberMeServices persistentTokenBasedRememberMeServices() {
         TokenBasedRememberMeServices tokenBasedRememberMeServices = new TokenBasedRememberMeServices(DEFAULT_REMEMBER_ME_KEY, userDetailsService);
