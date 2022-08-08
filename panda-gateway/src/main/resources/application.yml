@@ -20,10 +20,14 @@ spring:
           enabled: true
 
 server:
-  port: 9000
-
+  port: 9000    #HTTPS协议默认端口号为443，需要使用其他端口时，您可以在此处自定义。
+  ssl:
+    key-store-password: 1q2w3e4r    #填写pfx-password.txt文件内的密码。
+    key-store-type: PKCS12
+    key-store: classpath:flybabycat.cn.pfx   #您需要使用实际的证书名称替换domain_name.pfx。
 
 # 配置日志级别，方别调试
 logging:
   level:
     org.springframework.cloud.gateway: debug
+
