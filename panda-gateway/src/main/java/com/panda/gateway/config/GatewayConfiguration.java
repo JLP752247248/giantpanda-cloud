@@ -11,6 +11,11 @@ import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.BlockRequestHandler;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
+import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +46,7 @@ public class GatewayConfiguration {
     private final List<ViewResolver> viewResolvers;
     private final ServerCodecConfigurer serverCodecConfigurer;
 
-    public GatewayConfiguration (ObjectProvider<List<ViewResolver>> viewResolversProvider, ServerCodecConfigurer serverCodecConfigurer) {
+    public GatewayConfiguration(ObjectProvider<List<ViewResolver>> viewResolversProvider, ServerCodecConfigurer serverCodecConfigurer) {
         this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
         this.serverCodecConfigurer = serverCodecConfigurer;
     }
@@ -66,10 +71,10 @@ public class GatewayConfiguration {
 
     /**
      * 配置初始化的限流参数
-     *  用于指定资源的限流规则.
-     *      1.资源名称 (路由id)
-     *      2.配置统计时间
-     *      3.配置限流阈值
+     * 用于指定资源的限流规则.
+     * 1.资源名称 (路由id)
+     * 2.配置统计时间
+     * 3.配置限流阈值
      */
     @PostConstruct
     public void initGatewayRules() {
@@ -79,17 +84,29 @@ public class GatewayConfiguration {
 //				.setIntervalSec(1)
 //		);
         rules.add(new GatewayFlowRule("business_api")
-                .setCount(1).setIntervalSec(10)
+                .setCount(10).setIntervalSec(1)
         );
 
-
         GatewayRuleManager.loadRules(rules);
+
+        List<DegradeRule> rules1 = new ArrayList<>();
+        // ---------------熔断-降级配置-------------
+        DegradeRule degradeRule = new DegradeRule("business_api") // 资源名称
+                .setGrade(RuleConstant.DEGRADE_GRADE_EXCEPTION_COUNT) // 异常比率模式(秒级)
+                .setCount(1)
+                .setMinRequestAmount(1)
+                .setStatIntervalMs(5000)
+                .setTimeWindow(1); // 熔断降级时间(10s)
+        rules1.add(degradeRule);
+
+        // 加载规则.
+        DegradeRuleManager.loadRules(rules1);
     }
 
     /**
      * 自定义API限流分组
-     *      1.定义分组
-     *      2.对小组配置限流规则
+     * 1.定义分组
+     * 2.对小组配置限流规则
      */
     @PostConstruct
     private void initCustomizedApis() {
@@ -123,8 +140,16 @@ public class GatewayConfiguration {
             @Override
             public Mono<ServerResponse> handleRequest(ServerWebExchange serverWebExchange, Throwable throwable) {
                 Map map = new HashMap();
-                map.put("code",001);
-                map.put("message","不好意思,限流啦");
+                if (throwable instanceof DegradeException) {//降级、熔断
+                    map.put("status", 601);
+                    map.put("message", "服务被熔断了!");
+                } else if (throwable instanceof FlowException) {
+                    map.put("status", 602);
+                    map.put("message", "服务被限流了!");
+                } else {
+                    map.put("status", 603);
+                    map.put("message", "Blocked by Sentinel (flow limiting)");
+                }
                 return ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .body(BodyInserters.fromObject(map));

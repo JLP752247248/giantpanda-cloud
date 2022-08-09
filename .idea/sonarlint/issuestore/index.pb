@@ -129,10 +129,6 @@ Gpanda-auth/src/main/java/com/panda/auth/config/ApplicationSecurity.java,4\d\4d
 Spanda-auth/src/main/java/com/panda/auth/user/controller/RegisterRestController.java,3\8\384ef5dbe9abfbe48477c6a1682f4f330fb55eef
 v
 Fpanda-service/panda-service-olap/src/main/java/com/panda/olap/App.java,5\d\5d2fb4bd72ccb78fda9f98120c9145b94ad45e0f
-¡
-qpanda-service/panda-serivce-business/src/main/java/com/panda/service/business/controller/test/TestController.java,7\f\7f1ec31cd1a5e5db0e30be85c2c7e1184df7d60f
-q
-Apanda-gateway/src/main/java/com/panda/gateway/TestController.java,9\b\9beb21ac2133a76e5d40b2a279775ae2b546401f
 v
 Fpanda-auth/src/main/java/com/panda/auth/user/services/RoleService.java,1\0\10ccd9f33d3385675b9d3ad9a52baa0e410d0f4c
 |

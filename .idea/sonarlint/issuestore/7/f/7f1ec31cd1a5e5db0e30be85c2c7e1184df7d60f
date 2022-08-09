@@ -1,5 +1,0 @@
-
-^
-java:S4488%"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¨Þ²Œ
-a
-java:S1128"FRemove this unused import 'org.springframework.stereotype.Controller'.(øŠ—Öùÿÿÿÿ
