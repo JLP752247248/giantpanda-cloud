@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: spring-gateway
   datasource:
@@ -14,25 +16,35 @@ spring:
         server-addr: 127.0.0.1:8848
     # 使用 Sentinel 作为熔断器
     sentinel:
+      filter:
+        enabled: false
       transport:
-        port: 8721
-        dashboard: 127.0.0.1:8081
+        dashboard: 127.0.0.1:8080
     # 路由网关配置
     gateway:
       # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
       discovery:
         locator:
           enabled: true
-
+      # 配置路由
+      routes:
+        - id: business
+          uri: lb://business
+          predicates:
+            - Path=/business/**
+        - id: olap
+          uri: lb://olap
+          predicates:
+            - Path=/olap/**
 server:
   port: 9000    #HTTPS协议默认端口号为443，需要使用其他端口时，您可以在此处自定义。
   ssl:
     key-store-password: 1q2w3e4r    #填写pfx-password.txt文件内的密码。
     key-store-type: PKCS12
-    key-store: classpath:flybabycat.cn.pfx   #您需要使用实际的证书名称替换domain_name.pfx。
+    key-store: classpath:flybabycat.cn.pfx
+
 
 # 配置日志级别，方别调试
 logging:
   level:
     org.springframework.cloud.gateway: debug
-

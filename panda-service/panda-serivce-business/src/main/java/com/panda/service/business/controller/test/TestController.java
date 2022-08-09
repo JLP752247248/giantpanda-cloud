@@ -26,7 +26,7 @@ public class TestController {
 
     @GetMapping(value = "/echo1")
     public String echo1(String message) {
-        return "Hello Nacos Discovery "  + " , From port :" + 8081;
+        return "Hello Nacos Discovery " + " , From port :" + 8081;
     }
 
     @GetMapping(value = "/echo2")
@@ -35,7 +35,10 @@ public class TestController {
     }
 
     @RequestMapping(value = "/t1", method = RequestMethod.GET)
-    public Response<String> testmap(){
+    public Response<String> testmap() throws InterruptedException {
+        Thread.sleep(1000);
+
+
         return Response.createSuc(testconf);
     }
 }

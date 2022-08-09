@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sentinel-dashboard-1.8.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/panda-sentinelconsole/src/main/java/sentinel-dashboard-1.8.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
