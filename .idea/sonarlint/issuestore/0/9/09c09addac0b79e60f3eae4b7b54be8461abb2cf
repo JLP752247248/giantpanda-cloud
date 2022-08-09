@@ -1,0 +1,11 @@
+
+f
+java:S1130"KRemove the redundant 'java.io.IOException' thrown exception declaration(s).(Ž‚Ôàÿÿÿÿÿ
+Q	java:S125/"<This block of commented-out lines of code should be removed.(ØÊ­»
+Y
+java:S1128"<Remove this unused import 'com.alibaba.fastjson.JSONObject'.(äýµ8ö·Û§0
+j
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñýÓ“8ö·Û§0
+g
+java:S1128
+"ERemove this unused import 'org.springframework.stereotype.Component'.(Þ÷Ñ¸ÿÿÿÿÿ8ö·Û§0

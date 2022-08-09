@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoGeneratorSettingsState">
+    <option name="ignoredFields">
+      <set>
+        <option value="" />
+      </set>
+    </option>
+    <option name="moduleName" value="panda-auth" />
+    <option name="moduleNameToSettings">
+      <map>
+        <entry key="eureka-server">
+          <value>
+            <ModuleSettings />
+          </value>
+        </entry>
+        <entry key="panda-auth">
+          <value>
+            <ModuleSettings>
+              <option name="entityPackageName" value="com.panda.auth.user" />
+              <option name="entityParentDirectory" value="$PROJECT_DIR$/panda-auth/src/main/java" />
+              <option name="repositoryPackageName" value="com.panda.auth.user.repositories" />
+              <option name="repositoryParentDirectory" value="$PROJECT_DIR$/panda-auth/src/main/java" />
+            </ModuleSettings>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="repositorySuffix" value="Resp" />
+  </component>
   <component name="DatabaseSettingsState">
-    <option name="language" value="zh-CN" />
+    <option name="database" value="panda_auth" />
+    <option name="driverClass" value="com.mysql.jdbc.Driver" />
+    <option name="driverPath" value="C:\Users\admin\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" />
+    <option name="url" value="jdbc:mysql://{host}:{port}/{database}?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
   </component>
 </project>

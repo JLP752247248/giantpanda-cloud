@@ -1,0 +1,60 @@
+spring:
+  application:
+    # 应用名称
+    name: panda-auth
+  cloud:
+    # 使用 Naoos 作为服务注册发现
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 1080a65ba457a0477400
+            clientSecret: 8b8f8303d2c1759baf4722ecdc83d70c6ca63a9f
+            #redirect-uri: '{baseUrl}/auth/callback/{registrationId}'
+          qq:
+            client-id: 123213
+            client-secret: 54354354
+            provider: qq
+            client-name: QQ登录
+            authorization-grant-type: authorization_code
+            client-authentication-method: post
+            scope: get_user_info,list_album,upload_pic,do_like
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+        provider:
+          qq:
+            authorization-uri: https://graph.qq.com/oauth2.0/authorize
+            token-uri: https://graph.qq.com/oauth2.0/token
+            # 配置为QQ获取OpenId的Url
+            user-info-uri: https://graph.qq.com/oauth2.0/me
+            user-name-attribute: "nickname"
+server:
+  port: 8888
+
+
+# 配置日志级别，方别调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    org.springframework.security: debug
+########################
+#   Database Settings
+########################
+

@@ -5,7 +5,12 @@ server:
 
 spring:
   application:
-    name: hello-client
+    name: olap
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+    driverClassName: com.mysql.jdbc.Driver
   cloud:
     nacos:
       discovery:

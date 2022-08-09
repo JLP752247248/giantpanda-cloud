@@ -1,0 +1,27 @@
+server:
+  port: 6068
+spring:
+  application:
+    name: panda-file-server
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/panda_fileserver?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+tecent:
+  cos:
+    accessKey: AKIDHQLI3at0tZ1IMCpFahcJl13sTr30lX5Q
+    secretKey: BPaZKq7C2kFWYMZbQ2RfhWAew20qUxDH
+    regionName: ap-nanjing
+    bucketName:
+      public: panda-fileservice-1301703973
+      private: panda-fileserivce-pri-1301703973

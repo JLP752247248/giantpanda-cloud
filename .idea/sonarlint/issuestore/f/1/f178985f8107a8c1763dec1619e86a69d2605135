@@ -1,0 +1,22 @@
+
+N	java:S106T"9Replace this use of System.out or System.err by a logger.(…Õ¯Ë
+^
+java:S1854d"CRemove this useless assignment to local variable "putObjectResult".(õºåúÿÿÿÿ
+O
+java:S1481d"4Remove this unused "putObjectResult" local variable.(õºåúÿÿÿÿ
+P
+java:S1133n"5Do not forget to remove this deprecated code someday.(Ã‘Ì¡ùÿÿÿÿ
+C
+java:S1123n"(Add the missing @deprecated Javadoc tag.(Ã‘Ì¡ùÿÿÿÿ
+‡
+java:S1130n"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Ã‘Ì¡ùÿÿÿÿ
+W	java:S125‡"<This block of commented-out lines of code should be removed.(š‚¦£şÿÿÿÿ
+R	java:S125‹"<This block of commented-out lines of code should be removed.(¡Æ±‹
+w
+java:S14883"aImmediately return this expression instead of assigning it to the temporary variable "cosclient".(Ç·øˆ
+w
+java:S1488A"aImmediately return this expression instead of assigning it to the temporary variable "cosclient".(Ç·øˆ
+
+java:S1488x"fImmediately return this expression instead of assigning it to the temporary variable "cosObjectInput".(“Ö¡Éúÿÿÿÿ
+¬
+java:S1598"This file "CosObjectService.java" should be located in "com\panda\fileserver\filemanager\service" directory, not in "D:\realcode\giantpanda-cloud\panda-service\panda-file-server\src\main\java\com.panda.fileserver\filemanager\service"(Do not use dots in directory names).(³»ƒ8Ö·Ê¿¦0

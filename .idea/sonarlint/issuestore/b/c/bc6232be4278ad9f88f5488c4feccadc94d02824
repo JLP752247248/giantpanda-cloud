@@ -1,0 +1,20 @@
+
+O
+java:S1854"9Remove this useless assignment to local variable "token".(¸É¦Ó
+@
+java:S1481"*Remove this unused "token" local variable.(¸É¦Ó
+j
+java:S1128"ORemove this unused import 'com.fasterxml.jackson.core.JsonProcessingException'.(ßÔïÇûÿÿÿÿ
+^
+java:S1128"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™
+Q
+java:S1128";Remove this unused import 'com.google.common.collect.Maps'.(¯œĞ
+e
+java:S1128
+"JRemove this unused import 'org.springframework.core.io.buffer.DataBuffer'.(®ìÒ«ıÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ
+s
+java:S1128"XRemove this unused import 'org.springframework.http.server.reactive.ServerHttpResponse'.(¤áÅ‡ÿÿÿÿÿ
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
