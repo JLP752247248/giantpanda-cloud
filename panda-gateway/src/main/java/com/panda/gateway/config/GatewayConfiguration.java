@@ -14,6 +14,7 @@ import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBloc
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,7 @@ import java.util.*;
  * @Description: TODO
  * @Version: 1.0
  */
+@Configuration
 public class GatewayConfiguration {
 
     private final List<ViewResolver> viewResolvers;
@@ -76,8 +78,8 @@ public class GatewayConfiguration {
 //				.setCount(1)
 //				.setIntervalSec(1)
 //		);
-        rules.add(new GatewayFlowRule("product_api")
-                .setCount(1).setIntervalSec(1)
+        rules.add(new GatewayFlowRule("business_api")
+                .setCount(1).setIntervalSec(10)
         );
 
 
@@ -93,9 +95,9 @@ public class GatewayConfiguration {
     private void initCustomizedApis() {
         Set<ApiDefinition> definitions = new HashSet<>();
         //限流小组1 api1
-        ApiDefinition api1 = new ApiDefinition("product_api")
+        ApiDefinition api1 = new ApiDefinition("business_api")
                 .setPredicateItems(new HashSet<ApiPredicateItem>() {{
-                    add(new ApiPathPredicateItem().setPattern("/product-service/product/**").
+                    add(new ApiPathPredicateItem().setPattern("/business/**").
                             //已/product-service/product/开都的所有url
                                     setMatchStrategy(SentinelGatewayConstants.URL_MATCH_STRATEGY_PREFIX));
                 }});

@@ -14,6 +14,7 @@
         <module>panda-config</module>
         <module>panda-service</module>
         <module>panda-auth</module>
+        <module>panda-sentinelconsole</module>
     </modules>
 
     <properties>

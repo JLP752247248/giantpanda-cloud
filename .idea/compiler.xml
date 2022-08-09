@@ -21,6 +21,7 @@
       <module name="EurekaServer" target="8" />
       <module name="panda-api" target="8" />
       <module name="panda-open-cloud" target="8" />
+      <module name="panda-sentinelconsole" target="8" />
       <module name="panda-service-auth" target="8" />
       <module name="service-auth" target="8" />
     </bytecodeTargetLevel>
