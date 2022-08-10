@@ -1,7 +1,7 @@
 package com.panda.auth.user.dao;
 
 import com.panda.auth.user.entity.PermInfo;
-
+import com.panda.auth.user.entity.PermInfoExample;
 import java.util.Collection;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;

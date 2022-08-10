@@ -1,7 +1,7 @@
 package com.panda.auth.user.dao;
 
 import com.panda.auth.user.entity.Addr;
-
+import com.panda.auth.user.entity.AddrExample;
 import java.util.Collection;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;

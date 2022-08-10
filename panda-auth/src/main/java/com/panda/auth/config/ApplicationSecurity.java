@@ -1,9 +1,6 @@
 package com.panda.auth.config;
 
-import com.panda.auth.config.authorization.AnyMatchBased;
-import com.panda.auth.config.authorization.CustomFilterSecurityInterceptor;
-import com.panda.auth.config.authorization.JwtAuthenticationTokenFilter;
-import com.panda.auth.config.authorization.RealFilterInvocationSecurityMetadataSource;
+import com.panda.auth.config.authorization.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -45,10 +43,16 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
+                //.formLogin()
                 .oauth2Login()
                 .loginPage("/login/oauth2")
                 .successHandler(authenticationSuccessHandler)
                 .permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login/oauth2")
+                .loginProcessingUrl("/login/form")
+                .successHandler(authenticationSuccessHandler)
                 .and()
                 .logout()
                 .permitAll().and()
@@ -58,7 +62,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(14 * 24 * 60 * 60)
         ;
         //加入自定义的权限拦截器
+        http.addFilterAfter(new SmsAuthenticationFilter("/sms/login"), UsernamePasswordAuthenticationFilter.class);
         http.addFilterAfter(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
         //http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
@@ -70,7 +76,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     }
 
     private OncePerRequestFilter jwtAuthTokenFilter() {
-        JwtAuthenticationTokenFilter jwtAuthTokenFilter = new JwtAuthenticationTokenFilter();
+        TokenAuthenticationFilter jwtAuthTokenFilter = new TokenAuthenticationFilter();
         return jwtAuthTokenFilter;
     }
 

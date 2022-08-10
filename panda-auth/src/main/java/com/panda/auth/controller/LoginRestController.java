@@ -23,7 +23,6 @@ public class LoginRestController {
 
     @PostMapping
     public ResponseEntity<UserDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
-
         return ResponseEntity.ok(null);
     }
 
@@ -57,5 +56,13 @@ public class LoginRestController {
     public String oAuthLogin() {
         return "login";
     }
-
+    /**
+     * 登录失败返回 401 以及提示信息.
+     *
+     * @return the rest
+     */
+    @GetMapping("/form")
+    public String oAuthLoginform() {
+        return "xxx";
+    }
 }

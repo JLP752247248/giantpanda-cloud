@@ -47,7 +47,8 @@ spring:
             user-name-attribute: "nickname"
 server:
   port: 8888
-
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
 
 # 配置日志级别，方别调试
 logging:

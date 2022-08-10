@@ -23,20 +23,14 @@ public class UserDTO implements Serializable {
         if (user != null) {
             this.id = user.getId();
             this.username = user.getUsername();
-            this.name = user.getName();
-            this.surname = user.getSurname();
 
             this.birthDate = user.getBirthDate();
 
-            this.enabled = user.getEnabled();
+
 
             this.note = user.getNote();
 
-            this.creationDt = user.getCreationDt();
-            this.updatedDt = user.getUpdatedDt();
-            this.loginDt = user.getLoginDt();
 
-            this.secured = user.getSecured();
 
 
 

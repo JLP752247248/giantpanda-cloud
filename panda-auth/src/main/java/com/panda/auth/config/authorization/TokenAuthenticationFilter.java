@@ -22,9 +22,11 @@ import java.io.IOException;
  * 使用Spring提供的OncePerRequestFilter保证单次
  */
 //@Component
-public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
         //获取token

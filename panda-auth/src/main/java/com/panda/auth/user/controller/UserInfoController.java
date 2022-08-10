@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.Collection;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,10 @@ public class UserInfoController {
     @Autowired
     private UserInfoService service;
 
-    @PutMapping(value = "/insert")
+    @PutMapping(value = "/add")
     @Transactional(rollbackFor = Throwable.class)
-    @ApiOperation(value = "insert", notes = "")
-    public int insert(@RequestBody UserInfo data) {
+    @ApiOperation(value = "add", notes = "")
+    public UserInfo insert(@RequestBody UserInfo data) {
         return service.insert(data);
     }
 
@@ -82,38 +83,5 @@ public class UserInfoController {
     @ApiOperation(value = "listSelective", notes = "")
     public List<UserInfo> listSelective(@RequestParam(value = "query") UserInfo query) {
         return service.listSelective(query);
-    }
-
-    @PutMapping(value = "/add")
-    @Transactional(rollbackFor = Throwable.class)
-    @ApiOperation(value = "新增", notes = "")
-    public int add(@RequestBody UserInfo data) {
-        return service.add(data);
-    }
-
-    @DeleteMapping(value = "/delete")
-    @Transactional(rollbackFor = Throwable.class)
-    @ApiOperation(value = "删除", notes = "")
-    public int delete(@RequestParam(value = "id") Long id) {
-        return service.delete(id);
-    }
-
-    @PostMapping(value = "/update")
-    @Transactional(rollbackFor = Throwable.class)
-    @ApiOperation(value = "修改", notes = "")
-    public int update(@RequestBody UserInfo data) {
-        return service.update(data);
-    }
-
-    @GetMapping(value = "/detail")
-    @ApiOperation(value = "详情", notes = "")
-    public UserInfo detail(@RequestParam(value = "id") Long id) {
-        return service.detail(id);
-    }
-
-    @GetMapping(value = "/listQuery")
-    @ApiOperation(value = "列表查询", notes = "")
-    public List<UserInfo> listQuery() {
-        return service.listQuery();
     }
 }

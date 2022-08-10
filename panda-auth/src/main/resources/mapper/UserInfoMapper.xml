@@ -6,16 +6,14 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="surname" jdbcType="VARCHAR" property="surname" />
-    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="phone" jdbcType="BIGINT" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="birth_date" jdbcType="DATE" property="birthDate" />
-    <result column="enabled" jdbcType="TINYINT" property="enabled" />
-    <result column="creation_dt" jdbcType="TIMESTAMP" property="creationDt" />
-    <result column="updated_dt" jdbcType="TIMESTAMP" property="updatedDt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="login_dt" jdbcType="TIMESTAMP" property="loginDt" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="secured" jdbcType="TINYINT" property="secured" />
   </resultMap>
   
   <!-- 属性列表 -->
@@ -24,16 +22,14 @@
       id,
       username,
       password,
-      name,
-      surname,
-      gender,
+      phone,
+      email,
       birth_date,
-      enabled,
-      creation_dt,
-      updated_dt,
+      status,
+      create_time,
+      update_time,
       login_dt,
       note,
-      secured,
     </trim>
   </sql>
   
@@ -43,16 +39,14 @@
       #{data.id,jdbcType=BIGINT},
       #{data.username,jdbcType=VARCHAR},
       #{data.password,jdbcType=VARCHAR},
-      #{data.name,jdbcType=VARCHAR},
-      #{data.surname,jdbcType=VARCHAR},
-      #{data.gender,jdbcType=TINYINT},
+      #{data.phone,jdbcType=BIGINT},
+      #{data.email,jdbcType=VARCHAR},
       #{data.birthDate,jdbcType=DATE},
-      #{data.enabled,jdbcType=TINYINT},
-      #{data.creationDt,jdbcType=TIMESTAMP},
-      #{data.updatedDt,jdbcType=TIMESTAMP},
+      #{data.status,jdbcType=TINYINT},
+      #{data.createTime,jdbcType=TIMESTAMP},
+      #{data.updateTime,jdbcType=TIMESTAMP},
       #{data.loginDt,jdbcType=TIMESTAMP},
       #{data.note,jdbcType=VARCHAR},
-      #{data.secured,jdbcType=TINYINT},
     </trim>
   </sql>
   
@@ -61,16 +55,14 @@
     <trim suffixOverrides=",">
       username = #{data.username,jdbcType=VARCHAR},
       password = #{data.password,jdbcType=VARCHAR},
-      name = #{data.name,jdbcType=VARCHAR},
-      surname = #{data.surname,jdbcType=VARCHAR},
-      gender = #{data.gender,jdbcType=TINYINT},
+      phone = #{data.phone,jdbcType=BIGINT},
+      email = #{data.email,jdbcType=VARCHAR},
       birth_date = #{data.birthDate,jdbcType=DATE},
-      enabled = #{data.enabled,jdbcType=TINYINT},
-      creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
-      updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
+      status = #{data.status,jdbcType=TINYINT},
+      create_time = #{data.createTime,jdbcType=TIMESTAMP},
+      update_time = #{data.updateTime,jdbcType=TIMESTAMP},
       login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
       note = #{data.note,jdbcType=VARCHAR},
-      secured = #{data.secured,jdbcType=TINYINT},
     </trim>
   </sql>
   
@@ -83,35 +75,29 @@
       <if test="data.password != null">
         password = #{data.password,jdbcType=VARCHAR},
       </if>
-      <if test="data.name != null">
-        name = #{data.name,jdbcType=VARCHAR},
+      <if test="data.phone != null">
+        phone = #{data.phone,jdbcType=BIGINT},
       </if>
-      <if test="data.surname != null">
-        surname = #{data.surname,jdbcType=VARCHAR},
-      </if>
-      <if test="data.gender != null">
-        gender = #{data.gender,jdbcType=TINYINT},
+      <if test="data.email != null">
+        email = #{data.email,jdbcType=VARCHAR},
       </if>
       <if test="data.birthDate != null">
         birth_date = #{data.birthDate,jdbcType=DATE},
       </if>
-      <if test="data.enabled != null">
-        enabled = #{data.enabled,jdbcType=TINYINT},
+      <if test="data.status != null">
+        status = #{data.status,jdbcType=TINYINT},
       </if>
-      <if test="data.creationDt != null">
-        creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
+      <if test="data.createTime != null">
+        create_time = #{data.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="data.updatedDt != null">
-        updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
+      <if test="data.updateTime != null">
+        update_time = #{data.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="data.loginDt != null">
         login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
       </if>
       <if test="data.note != null">
         note = #{data.note,jdbcType=VARCHAR},
-      </if>
-      <if test="data.secured != null">
-        secured = #{data.secured,jdbcType=TINYINT},
       </if>
     </trim>
   </sql>
@@ -128,35 +114,29 @@
       <if test="password != null">
         and password = #{password,jdbcType=VARCHAR}
       </if>
-      <if test="name != null">
-        and name = #{name,jdbcType=VARCHAR}
+      <if test="phone != null">
+        and phone = #{phone,jdbcType=BIGINT}
       </if>
-      <if test="surname != null">
-        and surname = #{surname,jdbcType=VARCHAR}
-      </if>
-      <if test="gender != null">
-        and gender = #{gender,jdbcType=TINYINT}
+      <if test="email != null">
+        and email = #{email,jdbcType=VARCHAR}
       </if>
       <if test="birthDate != null">
         and birth_date = #{birthDate,jdbcType=DATE}
       </if>
-      <if test="enabled != null">
-        and enabled = #{enabled,jdbcType=TINYINT}
+      <if test="status != null">
+        and status = #{status,jdbcType=TINYINT}
       </if>
-      <if test="creationDt != null">
-        and creation_dt = #{creationDt,jdbcType=TIMESTAMP}
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
       </if>
-      <if test="updatedDt != null">
-        and updated_dt = #{updatedDt,jdbcType=TIMESTAMP}
+      <if test="updateTime != null">
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
       </if>
       <if test="loginDt != null">
         and login_dt = #{loginDt,jdbcType=TIMESTAMP}
       </if>
       <if test="note != null">
         and note = #{note,jdbcType=VARCHAR}
-      </if>
-      <if test="secured != null">
-        and secured = #{secured,jdbcType=TINYINT}
       </if>
     </trim>
   </sql>
@@ -264,543 +244,7 @@
     from sys_user
   </select>
   
-  <!-- 以上代码由MbgCode自动生成2022-08-09 14:35:22 -->
-
-
-
-  <!-- 以下为您的代码 -->
-  <!-- 结果集映射 -->
-  <resultMap id="BaseResultMap" type="com.panda.auth.user.entity.UserInfo">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="surname" jdbcType="VARCHAR" property="surname" />
-    <result column="gender" jdbcType="TINYINT" property="gender" />
-    <result column="birth_date" jdbcType="DATE" property="birthDate" />
-    <result column="enabled" jdbcType="TINYINT" property="enabled" />
-    <result column="creation_dt" jdbcType="TIMESTAMP" property="creationDt" />
-    <result column="updated_dt" jdbcType="TIMESTAMP" property="updatedDt" />
-    <result column="login_dt" jdbcType="TIMESTAMP" property="loginDt" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="secured" jdbcType="TINYINT" property="secured" />
-  </resultMap>
-  
-  <!-- 属性列表 -->
-  <sql id="Base_Column_List">
-    <trim suffixOverrides=",">
-      id,
-      username,
-      password,
-      name,
-      surname,
-      gender,
-      birth_date,
-      enabled,
-      creation_dt,
-      updated_dt,
-      login_dt,
-      note,
-      secured,
-    </trim>
-  </sql>
-  
-  <!-- 普通插入属性列表，注意与Base_Column_List属性列表一一对应 -->
-  <sql id="Insert_Property_List">
-    <trim suffixOverrides=",">
-      #{data.id,jdbcType=BIGINT},
-      #{data.username,jdbcType=VARCHAR},
-      #{data.password,jdbcType=VARCHAR},
-      #{data.name,jdbcType=VARCHAR},
-      #{data.surname,jdbcType=VARCHAR},
-      #{data.gender,jdbcType=TINYINT},
-      #{data.birthDate,jdbcType=DATE},
-      #{data.enabled,jdbcType=TINYINT},
-      #{data.creationDt,jdbcType=TIMESTAMP},
-      #{data.updatedDt,jdbcType=TIMESTAMP},
-      #{data.loginDt,jdbcType=TIMESTAMP},
-      #{data.note,jdbcType=VARCHAR},
-      #{data.secured,jdbcType=TINYINT},
-    </trim>
-  </sql>
-  
-  <!-- 普通修改属性列表（非主键属性） -->
-  <sql id="Update_Property_List">
-    <trim suffixOverrides=",">
-      username = #{data.username,jdbcType=VARCHAR},
-      password = #{data.password,jdbcType=VARCHAR},
-      name = #{data.name,jdbcType=VARCHAR},
-      surname = #{data.surname,jdbcType=VARCHAR},
-      gender = #{data.gender,jdbcType=TINYINT},
-      birth_date = #{data.birthDate,jdbcType=DATE},
-      enabled = #{data.enabled,jdbcType=TINYINT},
-      creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
-      updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
-      login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
-      note = #{data.note,jdbcType=VARCHAR},
-      secured = #{data.secured,jdbcType=TINYINT},
-    </trim>
-  </sql>
-  
-  <!-- 动态修改属性列表（非主键属性） -->
-  <sql id="Update_Selective_Property_List">
-    <trim suffixOverrides=",">
-      <if test="data.username != null">
-        username = #{data.username,jdbcType=VARCHAR},
-      </if>
-      <if test="data.password != null">
-        password = #{data.password,jdbcType=VARCHAR},
-      </if>
-      <if test="data.name != null">
-        name = #{data.name,jdbcType=VARCHAR},
-      </if>
-      <if test="data.surname != null">
-        surname = #{data.surname,jdbcType=VARCHAR},
-      </if>
-      <if test="data.gender != null">
-        gender = #{data.gender,jdbcType=TINYINT},
-      </if>
-      <if test="data.birthDate != null">
-        birth_date = #{data.birthDate,jdbcType=DATE},
-      </if>
-      <if test="data.enabled != null">
-        enabled = #{data.enabled,jdbcType=TINYINT},
-      </if>
-      <if test="data.creationDt != null">
-        creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.updatedDt != null">
-        updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.loginDt != null">
-        login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.note != null">
-        note = #{data.note,jdbcType=VARCHAR},
-      </if>
-      <if test="data.secured != null">
-        secured = #{data.secured,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </sql>
-  
-  <!-- 动态查询属性列表（所有属性） -->
-  <sql id="Select_Selective_Property_List">
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        and id = #{id,jdbcType=BIGINT}
-      </if>
-      <if test="username != null">
-        and username = #{username,jdbcType=VARCHAR}
-      </if>
-      <if test="password != null">
-        and password = #{password,jdbcType=VARCHAR}
-      </if>
-      <if test="name != null">
-        and name = #{name,jdbcType=VARCHAR}
-      </if>
-      <if test="surname != null">
-        and surname = #{surname,jdbcType=VARCHAR}
-      </if>
-      <if test="gender != null">
-        and gender = #{gender,jdbcType=TINYINT}
-      </if>
-      <if test="birthDate != null">
-        and birth_date = #{birthDate,jdbcType=DATE}
-      </if>
-      <if test="enabled != null">
-        and enabled = #{enabled,jdbcType=TINYINT}
-      </if>
-      <if test="creationDt != null">
-        and creation_dt = #{creationDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="updatedDt != null">
-        and updated_dt = #{updatedDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="loginDt != null">
-        and login_dt = #{loginDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="note != null">
-        and note = #{note,jdbcType=VARCHAR}
-      </if>
-      <if test="secured != null">
-        and secured = #{secured,jdbcType=TINYINT}
-      </if>
-    </trim>
-  </sql>
-  
-  <insert id="insert">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Base_Column_List" />
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Insert_Property_List" />
-    </trim>
-  </insert>
-  <insert id="insertBatch">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Base_Column_List" />
-    </trim>
-    values
-    <foreach collection="dataCollection" item="data" separator=",">
-      <trim prefix="(" suffix=")" suffixOverrides=",">
-        <include refid="Insert_Property_List" />
-      </trim>
-    </foreach>
-  </insert>
-  <update id="updateByPrimaryKey">
-    update sys_user
-    <set>
-      <include refid="Update_Property_List" />
-    </set>
-    where id = #{data.id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeySelective">
-    update sys_user
-    <set>
-      <include refid="Update_Selective_Property_List" />
-    </set>
-    where id = #{data.id,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch">
-    <foreach collection="dataCollection" item="data" separator=";">
-      update sys_user
-      <set>
-        <include refid="Update_Selective_Property_List" />
-      </set>
-      where id = #{data.id,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <delete id="deleteByPrimaryKey">
-    delete from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByIdCollection">
-    delete from sys_user
-    <where>
-      <choose>
-        <when test="idCollection == null or idCollection.size == 0">
-          and false
-        </when>
-        <otherwise>
-          and id in 
-          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
-            #{id,jdbcType=BIGINT}
-          </foreach>
-        </otherwise>
-      </choose>
-    </where>
-  </delete>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectByIdCollection" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    <where>
-      <choose>
-        <when test="idCollection == null or idCollection.size == 0">
-          and false
-        </when>
-        <otherwise>
-          and id in 
-          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
-            #{id,jdbcType=BIGINT}
-          </foreach>
-        </otherwise>
-      </choose>
-    </where>
-  </select>
-  <select id="listSelective" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    <where>
-      <include refid="Select_Selective_Property_List" />
-    </where>
-  </select>
-  <select id="listQuery" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-  </select>
-  
-  <!-- 以上代码由MbgCode自动生成2022-08-09 14:34:14 -->
-
-
-
-  <!-- 以下为您的代码 -->
-  <!-- 结果集映射 -->
-  <resultMap id="BaseResultMap" type="com.panda.auth.user.entity.UserInfo">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="surname" jdbcType="VARCHAR" property="surname" />
-    <result column="gender" jdbcType="TINYINT" property="gender" />
-    <result column="birth_date" jdbcType="DATE" property="birthDate" />
-    <result column="enabled" jdbcType="TINYINT" property="enabled" />
-    <result column="creation_dt" jdbcType="TIMESTAMP" property="creationDt" />
-    <result column="updated_dt" jdbcType="TIMESTAMP" property="updatedDt" />
-    <result column="login_dt" jdbcType="TIMESTAMP" property="loginDt" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="secured" jdbcType="TINYINT" property="secured" />
-  </resultMap>
-  
-  <!-- 属性列表 -->
-  <sql id="Base_Column_List">
-    <trim suffixOverrides=",">
-      id,
-      username,
-      password,
-      name,
-      surname,
-      gender,
-      birth_date,
-      enabled,
-      creation_dt,
-      updated_dt,
-      login_dt,
-      note,
-      secured,
-    </trim>
-  </sql>
-  
-  <!-- 普通插入属性列表，注意与Base_Column_List属性列表一一对应 -->
-  <sql id="Insert_Property_List">
-    <trim suffixOverrides=",">
-      #{data.id,jdbcType=BIGINT},
-      #{data.username,jdbcType=VARCHAR},
-      #{data.password,jdbcType=VARCHAR},
-      #{data.name,jdbcType=VARCHAR},
-      #{data.surname,jdbcType=VARCHAR},
-      #{data.gender,jdbcType=TINYINT},
-      #{data.birthDate,jdbcType=DATE},
-      #{data.enabled,jdbcType=TINYINT},
-      #{data.creationDt,jdbcType=TIMESTAMP},
-      #{data.updatedDt,jdbcType=TIMESTAMP},
-      #{data.loginDt,jdbcType=TIMESTAMP},
-      #{data.note,jdbcType=VARCHAR},
-      #{data.secured,jdbcType=TINYINT},
-    </trim>
-  </sql>
-  
-  <!-- 普通修改属性列表（非主键属性） -->
-  <sql id="Update_Property_List">
-    <trim suffixOverrides=",">
-      username = #{data.username,jdbcType=VARCHAR},
-      password = #{data.password,jdbcType=VARCHAR},
-      name = #{data.name,jdbcType=VARCHAR},
-      surname = #{data.surname,jdbcType=VARCHAR},
-      gender = #{data.gender,jdbcType=TINYINT},
-      birth_date = #{data.birthDate,jdbcType=DATE},
-      enabled = #{data.enabled,jdbcType=TINYINT},
-      creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
-      updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
-      login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
-      note = #{data.note,jdbcType=VARCHAR},
-      secured = #{data.secured,jdbcType=TINYINT},
-    </trim>
-  </sql>
-  
-  <!-- 动态修改属性列表（非主键属性） -->
-  <sql id="Update_Selective_Property_List">
-    <trim suffixOverrides=",">
-      <if test="data.username != null">
-        username = #{data.username,jdbcType=VARCHAR},
-      </if>
-      <if test="data.password != null">
-        password = #{data.password,jdbcType=VARCHAR},
-      </if>
-      <if test="data.name != null">
-        name = #{data.name,jdbcType=VARCHAR},
-      </if>
-      <if test="data.surname != null">
-        surname = #{data.surname,jdbcType=VARCHAR},
-      </if>
-      <if test="data.gender != null">
-        gender = #{data.gender,jdbcType=TINYINT},
-      </if>
-      <if test="data.birthDate != null">
-        birth_date = #{data.birthDate,jdbcType=DATE},
-      </if>
-      <if test="data.enabled != null">
-        enabled = #{data.enabled,jdbcType=TINYINT},
-      </if>
-      <if test="data.creationDt != null">
-        creation_dt = #{data.creationDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.updatedDt != null">
-        updated_dt = #{data.updatedDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.loginDt != null">
-        login_dt = #{data.loginDt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="data.note != null">
-        note = #{data.note,jdbcType=VARCHAR},
-      </if>
-      <if test="data.secured != null">
-        secured = #{data.secured,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </sql>
-  
-  <!-- 动态查询属性列表（所有属性） -->
-  <sql id="Select_Selective_Property_List">
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        and id = #{id,jdbcType=BIGINT}
-      </if>
-      <if test="username != null">
-        and username = #{username,jdbcType=VARCHAR}
-      </if>
-      <if test="password != null">
-        and password = #{password,jdbcType=VARCHAR}
-      </if>
-      <if test="name != null">
-        and name = #{name,jdbcType=VARCHAR}
-      </if>
-      <if test="surname != null">
-        and surname = #{surname,jdbcType=VARCHAR}
-      </if>
-      <if test="gender != null">
-        and gender = #{gender,jdbcType=TINYINT}
-      </if>
-      <if test="birthDate != null">
-        and birth_date = #{birthDate,jdbcType=DATE}
-      </if>
-      <if test="enabled != null">
-        and enabled = #{enabled,jdbcType=TINYINT}
-      </if>
-      <if test="creationDt != null">
-        and creation_dt = #{creationDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="updatedDt != null">
-        and updated_dt = #{updatedDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="loginDt != null">
-        and login_dt = #{loginDt,jdbcType=TIMESTAMP}
-      </if>
-      <if test="note != null">
-        and note = #{note,jdbcType=VARCHAR}
-      </if>
-      <if test="secured != null">
-        and secured = #{secured,jdbcType=TINYINT}
-      </if>
-    </trim>
-  </sql>
-  
-  <insert id="insert">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Base_Column_List" />
-    </trim>
-    values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Insert_Property_List" />
-    </trim>
-  </insert>
-  <insert id="insertBatch">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <include refid="Base_Column_List" />
-    </trim>
-    values
-    <foreach collection="dataCollection" item="data" separator=",">
-      <trim prefix="(" suffix=")" suffixOverrides=",">
-        <include refid="Insert_Property_List" />
-      </trim>
-    </foreach>
-  </insert>
-  <update id="updateByPrimaryKey">
-    update sys_user
-    <set>
-      <include refid="Update_Property_List" />
-    </set>
-    where id = #{data.id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeySelective">
-    update sys_user
-    <set>
-      <include refid="Update_Selective_Property_List" />
-    </set>
-    where id = #{data.id,jdbcType=BIGINT}
-  </update>
-  <update id="updateBatch">
-    <foreach collection="dataCollection" item="data" separator=";">
-      update sys_user
-      <set>
-        <include refid="Update_Selective_Property_List" />
-      </set>
-      where id = #{data.id,jdbcType=BIGINT}
-    </foreach>
-  </update>
-  <delete id="deleteByPrimaryKey">
-    delete from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByIdCollection">
-    delete from sys_user
-    <where>
-      <choose>
-        <when test="idCollection == null or idCollection.size == 0">
-          and false
-        </when>
-        <otherwise>
-          and id in 
-          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
-            #{id,jdbcType=BIGINT}
-          </foreach>
-        </otherwise>
-      </choose>
-    </where>
-  </delete>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectByIdCollection" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    <where>
-      <choose>
-        <when test="idCollection == null or idCollection.size == 0">
-          and false
-        </when>
-        <otherwise>
-          and id in 
-          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
-            #{id,jdbcType=BIGINT}
-          </foreach>
-        </otherwise>
-      </choose>
-    </where>
-  </select>
-  <select id="listSelective" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    <where>
-      <include refid="Select_Selective_Property_List" />
-    </where>
-  </select>
-  <select id="listQuery" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-  </select>
-  
-  <!-- 以上代码由MbgCode自动生成2022-08-09 14:12:21 -->
+  <!-- 以上代码由MbgCode自动生成2022-08-10 15:10:40 -->
 
 
 

@@ -1,13 +1,11 @@
 package com.panda.auth.config;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.common.utils.MD5Utils;
 import com.panda.auth.util.TokenUtil;
-import com.panda.common.mvc.Response;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -22,7 +20,7 @@ import java.io.IOException;
  * @Version: 1.0
  */
 @Component
-public class CommonAuthenticationSuccessHandler  implements AuthenticationSuccessHandler {
+public class CommonAuthenticationSuccessHandler  extends SavedRequestAwareAuthenticationSuccessHandler {
 
 
     /**
@@ -49,8 +47,6 @@ public class CommonAuthenticationSuccessHandler  implements AuthenticationSucces
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.setContentType("application/json;charset=utf-8");
-        Response<String> resp =Response.createSuc(md5,"登录成功");
-        response.getWriter().write(JSONObject.toJSONString(resp));
+        super.onAuthenticationSuccess(request,response,authentication);
     }
 }

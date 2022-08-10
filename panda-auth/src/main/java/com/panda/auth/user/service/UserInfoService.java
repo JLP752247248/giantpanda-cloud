@@ -5,10 +5,11 @@ import java.util.Collection;
 import java.util.List;
 
 public interface UserInfoService {
+
     /**
      * 单条插入
      */
-    int insert(UserInfo data);
+    UserInfo insert(UserInfo data);
 
     /**
      * 批量插入；数据集合为空会报错，使用时请判断是否空
@@ -55,28 +56,4 @@ public interface UserInfoService {
      */
     List<UserInfo> listSelective(UserInfo query);
 
-    /**
-     * 新增
-     */
-    int add(UserInfo data);
-
-    /**
-     * 删除
-     */
-    int delete(Long id);
-
-    /**
-     * 修改
-     */
-    int update(UserInfo data);
-
-    /**
-     * 详情
-     */
-    UserInfo detail(Long id);
-
-    /**
-     * 列表查询
-     */
-    List<UserInfo> listQuery();
 }
