@@ -2,7 +2,6 @@ package com.panda.auth;
 
 import com.panda.auth.user.entity.UserInfo;
 import com.panda.auth.user.service.UserInfoService;
-import com.panda.auth.util.IdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

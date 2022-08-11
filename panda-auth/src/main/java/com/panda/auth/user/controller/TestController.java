@@ -1,6 +1,6 @@
 package com.panda.auth.user.controller;
 
-import com.panda.auth.util.IdService;
+import com.panda.auth.service.IdService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

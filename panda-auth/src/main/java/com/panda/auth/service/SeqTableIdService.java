@@ -1,5 +1,6 @@
-package com.panda.auth.util;
+package com.panda.auth.service;
 
+import com.panda.auth.service.IdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

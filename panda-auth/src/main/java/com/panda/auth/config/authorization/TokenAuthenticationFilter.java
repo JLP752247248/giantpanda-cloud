@@ -1,13 +1,10 @@
 package com.panda.auth.config.authorization;
 
-import com.alibaba.fastjson.JSONObject;
-import com.panda.auth.util.TokenUtil;
+import com.panda.auth.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -26,7 +23,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
-
+    @Autowired
+    private TokenService tokenService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
         //获取token
@@ -37,7 +35,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        UsernamePasswordAuthenticationToken authenticationToken = TokenUtil.tokenMap.get(token);
+        Authentication authenticationToken = tokenService.getAuthenticationByToken(token);
         if(authenticationToken == null){
             //没有token 放行 后续过滤器会进行校验
             filterChain.doFilter(request,response);

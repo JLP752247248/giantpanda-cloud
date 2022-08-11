@@ -1,4 +1,4 @@
-package com.panda.auth.util;
+package com.panda.auth.service;
 
 /**
  * @Author: JLP
