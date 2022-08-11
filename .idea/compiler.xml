@@ -7,14 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="panda-service-olap" />
+        <module name="panda-serivce-business" />
         <module name="panda-auth" />
+        <module name="panda-gateway" />
+        <module name="panda-config" />
         <module name="eureka-server" />
         <module name="panda-common" />
-        <module name="panda-serivce-business" />
-        <module name="panda-service-olap" />
         <module name="panda-file-server" />
-        <module name="panda-config" />
-        <module name="panda-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
