@@ -11,7 +11,7 @@
  Target Server Version : 50714
  File Encoding         : 65001
 
- Date: 09/08/2022 14:16:02
+ Date: 11/08/2022 17:13:14
 */
 
 SET NAMES utf8mb4;
@@ -113,51 +113,67 @@ INSERT INTO `sys_perm_role` VALUES (3, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NOT NULL COMMENT '更新时间',
+  `status` smallint(255) NOT NULL DEFAULT 0 COMMENT '状态 0停用 1启用',
+  `parent_id` bigint(10) NOT NULL DEFAULT -1 COMMENT '父角色id',
+  `desc` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '角色描述',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `role`(`role`) USING BTREE
+  UNIQUE INDEX `role`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES (2, 'ADMINISTRATOR');
-INSERT INTO `sys_role` VALUES (1, 'USER');
+INSERT INTO `sys_role` VALUES (1, 'USER', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, -1, NULL);
+INSERT INTO `sys_role` VALUES (2, 'ADMINISTRATOR', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, -1, NULL);
+
+-- ----------------------------
+-- Table structure for sys_sequence
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_sequence`;
+CREATE TABLE `sys_sequence`  (
+  `seq_key` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '序列键',
+  `seq_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '序列名',
+  `seq_value` bigint(11) NOT NULL DEFAULT 0 COMMENT '序列值',
+  PRIMARY KEY (`seq_key`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_sequence
+-- ----------------------------
+INSERT INTO `sys_sequence` VALUES ('user_key', '用户表主键', 100);
+INSERT INTO `sys_sequence` VALUES ('xxx', 'dfasdf', 0);
 
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `surname` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `gender` tinyint(4) DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码，密文',
+  `phone` bigint(11) DEFAULT NULL COMMENT '手机号',
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '邮箱',
   `birth_date` date DEFAULT NULL,
-  `enabled` tinyint(4) DEFAULT 1,
-  `creation_dt` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_dt` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(4) DEFAULT 1 COMMENT '状态：1 有效  2 注销 3 禁用',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `login_dt` timestamp(0) DEFAULT NULL,
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `secured` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'andrea', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Andrea', 'Test', 0, '1977-08-14', 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 1);
-INSERT INTO `sys_user` VALUES (2, 'mario', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Mario', 'Rossi', 0, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (3, 'stefania', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Stefania', 'Verdi', 1, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (4, 'veronica', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Veronica', 'Gialli', 1, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (5, 'mark', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Mark', 'Green', 0, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (6, 'paul', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Paul', 'Ludwing', 0, NULL, 0, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (7, 'jennifer', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Jennifer', 'Red', 0, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
-INSERT INTO `sys_user` VALUES (8, 'karina', '1d/NZaEqNgtEomytAPrwm/+QjmbudLg33oeEk77Xh88=', 'Karina', 'Yellow', 1, NULL, 1, '2022-08-03 14:01:18', '2022-08-03 14:01:18', NULL, NULL, 0);
+INSERT INTO `sys_user` VALUES (7, 'xx', '343fdagdfsgfd', NULL, NULL, NULL, NULL, '2022-08-10 02:11:54', '2022-08-10 02:11:54', NULL, NULL);
+INSERT INTO `sys_user` VALUES (100, 'testuser3', '1234', 13951554654, NULL, NULL, NULL, '2022-08-11 16:41:39', '2022-08-11 16:41:39', NULL, NULL);
+INSERT INTO `sys_user` VALUES (2000004, 'testuser1', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:17:18', '2022-08-10 14:17:18', NULL, NULL);
+INSERT INTO `sys_user` VALUES (2000005, 'testuser2', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:18:01', '2022-08-10 14:18:01', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
