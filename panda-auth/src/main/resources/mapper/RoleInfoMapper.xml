@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panda.auth.user.dao.RoleInfoMapper">
+  <!-- 结果集映射 -->
+  <resultMap id="BaseResultMap" type="com.panda.auth.user.entity.RoleInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  
+  <!-- 属性列表 -->
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+      id,
+      name,
+      create_time,
+      update_time,
+      status,
+      parent_id,
+      desc,
+    </trim>
+  </sql>
+  
+  <!-- 普通插入属性列表，注意与Base_Column_List属性列表一一对应 -->
+  <sql id="Insert_Property_List">
+    <trim suffixOverrides=",">
+      #{data.id,jdbcType=BIGINT},
+      #{data.name,jdbcType=VARCHAR},
+      #{data.createTime,jdbcType=TIMESTAMP},
+      #{data.updateTime,jdbcType=TIMESTAMP},
+      #{data.status,jdbcType=SMALLINT},
+      #{data.parentId,jdbcType=BIGINT},
+      #{data.desc,jdbcType=VARCHAR},
+    </trim>
+  </sql>
+  
+  <!-- 普通修改属性列表（非主键属性） -->
+  <sql id="Update_Property_List">
+    <trim suffixOverrides=",">
+      name = #{data.name,jdbcType=VARCHAR},
+      create_time = #{data.createTime,jdbcType=TIMESTAMP},
+      update_time = #{data.updateTime,jdbcType=TIMESTAMP},
+      status = #{data.status,jdbcType=SMALLINT},
+      parent_id = #{data.parentId,jdbcType=BIGINT},
+      desc = #{data.desc,jdbcType=VARCHAR},
+    </trim>
+  </sql>
+  
+  <!-- 动态修改属性列表（非主键属性） -->
+  <sql id="Update_Selective_Property_List">
+    <trim suffixOverrides=",">
+      <if test="data.name != null">
+        name = #{data.name,jdbcType=VARCHAR},
+      </if>
+      <if test="data.createTime != null">
+        create_time = #{data.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data.updateTime != null">
+        update_time = #{data.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data.status != null">
+        status = #{data.status,jdbcType=SMALLINT},
+      </if>
+      <if test="data.parentId != null">
+        parent_id = #{data.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="data.desc != null">
+        desc = #{data.desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </sql>
+  
+  <!-- 动态查询属性列表（所有属性） -->
+  <sql id="Select_Selective_Property_List">
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null">
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="status != null">
+        and status = #{status,jdbcType=SMALLINT}
+      </if>
+      <if test="parentId != null">
+        and parent_id = #{parentId,jdbcType=BIGINT}
+      </if>
+      <if test="desc != null">
+        and desc = #{desc,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  
+  <insert id="insert">
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Insert_Property_List" />
+    </trim>
+  </insert>
+  <insert id="insertBatch">
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    values
+    <foreach collection="dataCollection" item="data" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <include refid="Insert_Property_List" />
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKey">
+    update sys_role
+    <set>
+      <include refid="Update_Property_List" />
+    </set>
+    where id = #{data.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeySelective">
+    update sys_role
+    <set>
+      <include refid="Update_Selective_Property_List" />
+    </set>
+    where id = #{data.id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch">
+    <foreach collection="dataCollection" item="data" separator=";">
+      update sys_role
+      <set>
+        <include refid="Update_Selective_Property_List" />
+      </set>
+      where id = #{data.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <delete id="deleteByPrimaryKey">
+    delete from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByIdCollection">
+    delete from sys_role
+    <where>
+      <choose>
+        <when test="idCollection == null or idCollection.size == 0">
+          and false
+        </when>
+        <otherwise>
+          and id in 
+          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
+            #{id,jdbcType=BIGINT}
+          </foreach>
+        </otherwise>
+      </choose>
+    </where>
+  </delete>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByIdCollection" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    <where>
+      <choose>
+        <when test="idCollection == null or idCollection.size == 0">
+          and false
+        </when>
+        <otherwise>
+          and id in 
+          <foreach close=")" collection="idCollection" item="id" open="(" separator=",">
+            #{id,jdbcType=BIGINT}
+          </foreach>
+        </otherwise>
+      </choose>
+    </where>
+  </select>
+  <select id="listSelective" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    <where>
+      <include refid="Select_Selective_Property_List" />
+    </where>
+  </select>
+  <select id="listQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+  </select>
+  
+  <!-- 以上代码由MbgCode自动生成2022-08-11 17:08:22 -->
+
+
+
+  <!-- 以下为您的代码 -->
+  
+</mapper>
