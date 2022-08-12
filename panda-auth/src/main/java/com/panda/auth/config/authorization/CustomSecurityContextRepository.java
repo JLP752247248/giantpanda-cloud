@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.Map;
  * <br/>
  * 分布式session
  */
+
 public class CustomSecurityContextRepository implements SecurityContextRepository {
 
     //@TODO 后面可以改成分布式缓存

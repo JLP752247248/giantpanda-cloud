@@ -40,6 +40,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private  TokenAuthenticationFilter tokenAuthenticationFilter;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -68,7 +70,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
         ;
         //加入自定义的权限拦截器
-        http.addFilterAfter(jwtAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAfter(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         //http.addFilterAfter(customFilterSecurityInterceptor(), FilterSecurityInterceptor.class);
     }

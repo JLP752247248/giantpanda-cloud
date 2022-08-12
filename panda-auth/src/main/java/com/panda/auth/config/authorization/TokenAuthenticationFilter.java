@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -18,7 +19,7 @@ import java.io.IOException;
  * Token拦截器
  * 使用Spring提供的OncePerRequestFilter保证单次
  */
-//@Component
+@Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
