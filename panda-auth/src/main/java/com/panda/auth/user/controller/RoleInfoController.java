@@ -2,27 +2,36 @@ package com.panda.auth.user.controller;
 
 import com.panda.auth.user.entity.RoleInfo;
 import com.panda.auth.user.service.RoleInfoService;
+import com.panda.auth.vo.RoleInfoCreateVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/roleInfo")
-@Api(tags = "")
+@Api(tags = "角色管理服务")
 public class RoleInfoController {
     @Autowired
     private RoleInfoService service;
 
-    @PutMapping(value = "/insert")
+    @PutMapping(value = "/create")
     @Transactional(rollbackFor = Throwable.class)
-    @ApiOperation(value = "insert", notes = "")
-    public int insert(@RequestBody RoleInfo data) {
-        return service.insert(data);
+    @ApiOperation(value = "新增角色", notes = "")
+    public int insert(@RequestBody @Validated RoleInfoCreateVo data) {
+        return service.insert(data.buildRoleInfo());
     }
+
+    @GetMapping(value = "/list")
+    @ApiOperation(value = "列举所有角色（当前用户权限范围内）", notes = "")
+    public List<RoleInfo> listSelective() {
+        return service.listQuery();
+    }
+
 
     @PutMapping(value = "/insertBatch")
     @Transactional(rollbackFor = Throwable.class)

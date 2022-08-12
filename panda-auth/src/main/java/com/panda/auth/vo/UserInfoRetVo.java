@@ -21,6 +21,5 @@ public class UserInfoRetVo {
 
     private AddrVo addr;
 
-    private RoleInfoVo roleInfo;
 
 }

@@ -3,6 +3,7 @@ package com.panda.auth.controller;
 
 import com.panda.auth.user.entity.UserInfo;
 import com.panda.auth.user.service.UserInfoService;
+import com.panda.auth.vo.UserRegistCancelVo;
 import com.panda.auth.vo.UserRegistVo;
 import com.panda.common.mvc.Response;
 import lombok.extern.slf4j.Slf4j;
@@ -25,16 +26,32 @@ public class RegistRestController {
     /**
      * 用户注册
      * 两种模式，一种是普通账号注册，填写用户名，手机号（需要短信验证）
-     *           另一种模式是第三方账户接入，需要绑定手机号（需要短信验证）
+     * 另一种模式是第三方账户接入，需要绑定手机号（需要短信验证）
+     *
      * @return the rest
      */
     @PostMapping("/regist")
     public Response<UserInfo> regist(@RequestBody @Validated UserRegistVo data) {
         boolean isSmsCodeRight = smsCodeCheck(data.getSmsCode());
-        if(!isSmsCodeRight){
+        if (!isSmsCodeRight) {
             return Response.createErr(null);
         }
         UserInfo res = userService.insert(data.buildUserInfo());
+        return Response.createSuc(res);
+    }
+
+    /**
+     * 用户注销
+     *
+     * @return the rest
+     */
+    @PostMapping("/regist_cancel")
+    public Response registCancel(@RequestBody @Validated UserRegistCancelVo data) {
+        boolean isSmsCodeRight = smsCodeCheck(data.getSmsCode());
+        if (!isSmsCodeRight) {
+            return Response.createErr(null);
+        }
+        int res = userService.deleteByPrimaryKey(data.getId());
         return Response.createSuc(res);
     }
 

@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel
-public class RoleInfoVo  {
+public class RoleInfoCreateVo  {
 
     /***/
     @NotNull

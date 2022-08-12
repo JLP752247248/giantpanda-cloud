@@ -79,4 +79,9 @@ public interface RoleInfoService {
      * 列表查询
      */
     List<RoleInfo> listQuery();
+
+    /**
+     * 查询当前登陆用户可以查看的所有角色
+     */
+    List<RoleInfo> queryAllRolesBySecurity();
 }

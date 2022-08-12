@@ -87,4 +87,11 @@ public class RoleInfoServiceImpl implements RoleInfoService {
     public List<RoleInfo> listQuery() {
         return mapper.listQuery();
     }
+
+    @Override
+    public List<RoleInfo> queryAllRolesBySecurity() {
+        //获取当前登陆用户
+
+        return null;
+    }
 }
