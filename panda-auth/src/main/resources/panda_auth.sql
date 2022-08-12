@@ -11,7 +11,7 @@
  Target Server Version : 50714
  File Encoding         : 65001
 
- Date: 11/08/2022 17:13:14
+ Date: 12/08/2022 17:00:47
 */
 
 SET NAMES utf8mb4;
@@ -73,7 +73,7 @@ INSERT INTO `sys_contact` VALUES (8, 'karina.yellow@gmail.com', NULL, NULL, NULL
 DROP TABLE IF EXISTS `sys_perm`;
 CREATE TABLE `sys_perm`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `permission` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `permission` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限内容，这里可以填写具体资源uri',
   `enabled` int(11) DEFAULT 1,
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
@@ -120,15 +120,17 @@ CREATE TABLE `sys_role`  (
   `status` smallint(255) NOT NULL DEFAULT 0 COMMENT '状态 0停用 1启用',
   `parent_id` bigint(10) NOT NULL DEFAULT -1 COMMENT '父角色id',
   `desc` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '角色描述',
+  `create_uid` bigint(20) DEFAULT NULL COMMENT '创建人id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `role`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES (1, 'USER', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, -1, NULL);
-INSERT INTO `sys_role` VALUES (2, 'ADMINISTRATOR', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, -1, NULL);
+INSERT INTO `sys_role` VALUES (1, 'anonymous', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, -1, '匿名角色', NULL);
+INSERT INTO `sys_role` VALUES (2, 'superadmin', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, -1, '顶级管理员', NULL);
+INSERT INTO `sys_role` VALUES (3, 'admin', '2022-08-12 14:49:16', '2022-08-12 14:49:24', 1, 2, '管理员', NULL);
 
 -- ----------------------------
 -- Table structure for sys_sequence
@@ -163,6 +165,7 @@ CREATE TABLE `sys_user`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `login_dt` timestamp(0) DEFAULT NULL,
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `create_uid` bigint(20) DEFAULT NULL COMMENT '创建人id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -170,10 +173,10 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (7, 'xx', '343fdagdfsgfd', NULL, NULL, NULL, NULL, '2022-08-10 02:11:54', '2022-08-10 02:11:54', NULL, NULL);
-INSERT INTO `sys_user` VALUES (100, 'testuser3', '1234', 13951554654, NULL, NULL, NULL, '2022-08-11 16:41:39', '2022-08-11 16:41:39', NULL, NULL);
-INSERT INTO `sys_user` VALUES (2000004, 'testuser1', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:17:18', '2022-08-10 14:17:18', NULL, NULL);
-INSERT INTO `sys_user` VALUES (2000005, 'testuser2', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:18:01', '2022-08-10 14:18:01', NULL, NULL);
+INSERT INTO `sys_user` VALUES (7, 'xx', '343fdagdfsgfd', NULL, NULL, NULL, NULL, '2022-08-10 02:11:54', '2022-08-10 02:11:54', NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (100, 'testuser3', '1234', 13951554654, NULL, NULL, NULL, '2022-08-11 16:41:39', '2022-08-11 16:41:39', NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (2000004, 'testuser1', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:17:18', '2022-08-10 14:17:18', NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (2000005, 'jianglp', '1234', 13951554654, NULL, NULL, NULL, '2022-08-10 14:18:01', '2022-08-10 14:18:01', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
