@@ -1,6 +1,7 @@
 package com.panda.auth.config;
 
 import com.panda.auth.service.TokenService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -18,6 +19,7 @@ import java.io.IOException;
  * @Version: 1.0
  */
 @Component
+@Slf4j
 public class CommonAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     @Autowired
     private TokenService tokenService;
@@ -40,6 +42,7 @@ public class CommonAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         try {
+            log.info("登录成功");
             String token = tokenService.generateToken(authentication);
             tokenService.setAuthenticationByToken(token, authentication);
         } catch (Exception e) {

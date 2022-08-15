@@ -14,6 +14,7 @@
         <module name="panda-config" />
         <module name="eureka-server" />
         <module name="panda-common" />
+        <module name="TestPlug" />
         <module name="panda-file-server" />
       </profile>
     </annotationProcessing>

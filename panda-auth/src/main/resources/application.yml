@@ -8,9 +8,9 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://43.142.242.214:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 1234
+    password: 1q2w#E$R
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
