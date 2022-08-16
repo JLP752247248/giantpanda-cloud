@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-gateway
+  datasource:
+    url: jdbc:mysql://43.142.242.214:3306/panda_activity?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1q2w#E$R
+    driverClassName: com.mysql.jdbc.Driver
+  activiti:
+    deployment-mode: never-fail # 关闭 SpringAutoDeployment
+    check-process-definitions: false #自动部署验证设置:true-开启（默认）、false-关闭
+    database-schema-update: true #true表示对数据库中所有表进行更新操作。如果表不存在，则自动创建。
+    history-level: full #full表示全部记录历史，方便绘制流程图
+    db-history-used: true #true表示使用历史表
+  main:
+    allow-bean-definition-overriding: true #不同配置文件中存在id或者name相同的bean定义，后面加载的bean定义会覆盖前面的bean定义
+  security:
+    user:
+      name: jianglp
+      password: 123
+      roles: USER
+

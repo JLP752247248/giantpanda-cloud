@@ -2,6 +2,7 @@ package com.panda.auth.user.controller;
 
 import com.panda.auth.user.entity.UserInfo;
 import com.panda.auth.user.service.UserInfoService;
+import com.panda.auth.vo.UserInfoListQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.Collection;
@@ -24,6 +25,15 @@ public class UserInfoController {
     public UserInfo insert(@RequestBody UserInfo data) {
         return service.insert(data);
     }
+
+    @GetMapping(value = "/list")
+    @ApiOperation(value = "列表查询", notes = "")
+    public List<UserInfo> listSelective(@RequestParam(value = "userParam") UserInfoListQueryVo userParam) {
+        UserInfo dto = userParam.toDto();
+        return service.listSelective(dto);
+    }
+
+
 
     @PutMapping(value = "/insertBatch")
     @Transactional(rollbackFor = Throwable.class)

@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="panda-service-olap" />
+        <module name="eureka-server" />
+        <module name="TestPlug" />
         <module name="panda-serivce-business" />
         <module name="panda-auth" />
+        <module name="panda-workflow" />
+        <module name="panda-file-server" />
         <module name="panda-gateway" />
         <module name="panda-config" />
-        <module name="eureka-server" />
         <module name="panda-common" />
-        <module name="TestPlug" />
-        <module name="panda-file-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

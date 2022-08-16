@@ -15,6 +15,7 @@
         <module>panda-service</module>
         <module>panda-auth</module>
         <module>TestPlug</module>
+        <module>panda-workflow</module>
     </modules>
 
     <properties>
