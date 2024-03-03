@@ -7,16 +7,6 @@ f
 6panda-auth/src/main/java/com/panda/auth/vo/AddrVo.java,9\c\9c39e997f52d6286ce6c963ede633421609b5475
 r
 Bpanda-auth/src/main/java/com/panda/auth/vo/UserRegistCancelVo.java,3\c\3c5f9e2dfcf0ebeb03d01917072b608a9bcd81b9
-°
-qpanda-service/panda-serivce-business/src/main/java/com/panda/service/business/controller/test/TestController.java,7\f\7f1ec31cd1a5e5db0e30be85c2c7e1184df7d60f
-õ
-kpanda-service/panda-serivce-business/src/main/java/com/panda/service/business/PandaBusinessApplication.java,2\8\28a98f8952a721efaaa342f27fd3b8aeaff4995d
-y
-Ipanda-service/panda-service-olap/src/main/java/com/panda/olap/Config.java,d\2\d2cf4249dba6d49373245d300480e0d319aa54bb
-Å
-Qpanda-service/panda-service-olap/src/main/java/com/panda/olap/TestController.java,5\1\51e617a72569c9b0150a7f048aeea547251f0fd8
-v
-Fpanda-service/panda-service-olap/src/main/java/com/panda/olap/App.java,5\d\5d2fb4bd72ccb78fda9f98120c9145b94ad45e0f
 m
 =panda-auth/src/main/java/com/panda/auth/vo/UserInfoRetVo.java,a\3\a3cceaecbac5c27e6dad582ccdb00e05d662d0a6
 Ç

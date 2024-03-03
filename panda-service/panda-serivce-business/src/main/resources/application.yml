@@ -2,9 +2,9 @@ spring:
   application:
     name: business
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://43.142.242.214:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 1234
+    password: 1q2w#E$R
     driverClassName: com.mysql.jdbc.Driver
   profiles:
     active: dev
@@ -21,3 +21,16 @@ server:
 
 test:
   conf: jsklafjds
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: seataGroup-${seata.application-id}
+  service:
+    vgroup-mapping:
+      seataGroup-business: test
+    grouplist:
+      test: 127.0.0.1:8091
+  config:
+    type: file
+    file:
+      name: file.conf

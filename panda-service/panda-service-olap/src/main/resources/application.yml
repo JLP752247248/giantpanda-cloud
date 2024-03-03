@@ -7,11 +7,24 @@ spring:
   application:
     name: olap
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://43.142.242.214:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 1234
+    password: 1q2w#E$R
     driverClassName: com.mysql.jdbc.Driver
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: seataGroup-${seata.application-id}
+  service:
+    vgroup-mapping:
+      seataGroup-olap: test
+    grouplist:
+      test: 127.0.0.1:8091
+  config:
+    type: file
+    file:
+      name: file.conf

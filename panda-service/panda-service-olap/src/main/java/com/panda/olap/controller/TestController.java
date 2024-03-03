@@ -1,15 +1,20 @@
-package com.panda.olap;
+package com.panda.olap.controller;
 
 
+import com.panda.olap.serivce.ServiceATFeign;
+import io.seata.core.context.RootContext;
+import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-
+@Slf4j
 @RestController
 public class TestController {
 
@@ -39,5 +44,21 @@ public class TestController {
             e.printStackTrace();
         }
         return "xxxxxxxxxxxxxxxxxxxxxxx";
+    }
+    @Autowired
+    private JdbcTemplate template;
+    @Autowired
+    private ServiceATFeign atFeign;
+
+
+    @GlobalTransactional(timeoutMills = 60000 * 2)
+    @GetMapping("/at-insert")
+    public String insert() {
+        log.info("------------------> xid = " + RootContext.getXID());
+        template.update("update sys_role set name = 3 where id =3 ");
+        atFeign.insertAT();
+        //强行抛出异常回滚
+        //throw new RuntimeException("AT服务测试回滚");
+        return "success";
     }
 }

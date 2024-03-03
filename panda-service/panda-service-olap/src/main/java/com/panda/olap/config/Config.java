@@ -1,4 +1,4 @@
-package com.panda.olap;
+package com.panda.olap.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
