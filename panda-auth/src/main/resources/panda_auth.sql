@@ -115,8 +115,8 @@ DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
-  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NOT NULL COMMENT '更新时间',
+  `create_time` datetime not null default '1949-10-01' COMMENT '创建时间',
+  `update_time` datetime not null default '1949-10-01' COMMENT '更新时间',
   `status` smallint(255) NOT NULL DEFAULT 0 COMMENT '状态 0停用 1启用',
   `parent_id` bigint(10) NOT NULL DEFAULT -1 COMMENT '父角色id',
   `desc` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '角色描述',
@@ -124,6 +124,7 @@ CREATE TABLE `sys_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `role`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 
 -- ----------------------------
 -- Records of sys_role
@@ -159,11 +160,11 @@ CREATE TABLE `sys_user`  (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码，密文',
   `phone` bigint(11) DEFAULT NULL COMMENT '手机号',
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '邮箱',
-  `birth_date` date DEFAULT NULL,
+  `birth_date` datetime DEFAULT NULL,
   `status` tinyint(4) DEFAULT 1 COMMENT '状态：1 有效  2 注销 3 禁用',
-  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `login_dt` timestamp(0) DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT '1949-10-01',
+  `update_time` datetime NOT NULL DEFAULT '1949-10-01',
+  `login_dt` datetime DEFAULT NULL,
   `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `create_uid` bigint(20) DEFAULT NULL COMMENT '创建人id',
   PRIMARY KEY (`id`) USING BTREE,
@@ -201,10 +202,5 @@ INSERT INTO `sys_user_role` VALUES (6, 1);
 INSERT INTO `sys_user_role` VALUES (7, 1);
 INSERT INTO `sys_user_role` VALUES (8, 1);
 
--- ----------------------------
--- View structure for enabled_users
--- ----------------------------
-DROP VIEW IF EXISTS `enabled_users`;
-CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`localhost` SQL SECURITY DEFINER VIEW `enabled_users` AS select `users`.`username` AS `username`,`contacts`.`email` AS `email`,`contacts`.`phone` AS `phone`,`users`.`creation_dt` AS `creation_dt`,`users`.`updated_dt` AS `updated_dt`,`users`.`login_dt` AS `login_dt`,`users`.`secured` AS `secured` from (`users` join `contacts` on((`contacts`.`user_id` = `users`.`id`))) where (`users`.`enabled` is true);
 
 SET FOREIGN_KEY_CHECKS = 1;

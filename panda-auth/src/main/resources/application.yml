@@ -1,16 +1,19 @@
 spring:
   application:
-    # 应用名称
     name: panda-auth
   cloud:
-    # 使用 Naoos 作为服务注册发现
     nacos:
+      config:
+        enabled: false
+        refresh-enable: false
       discovery:
-        server-addr: 127.0.0.1:8848
+        register-enable: false
+        instance-enable: false
+        server-addr: 127.0.0.2:8848
   datasource:
-    url: jdbc:mysql://43.142.242.214:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/panda_auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 1q2w#E$R
+    password: 1234
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
