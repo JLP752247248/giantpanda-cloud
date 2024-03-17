@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,14 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Component("userDetailsService")
 public class UserDetailService implements UserDetailsService {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     String pwd = encoder.encode("123");
 
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         UserDetails user =
                 User.builder()
                         .username(username)

@@ -41,10 +41,9 @@ public class LoginRestController {
      *
      * @return the rest
      */
-    @PostMapping("/success")
+    @GetMapping("/success")
     public ResponseEntity<String> loginSuccess() {
-        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        return new ResponseEntity(token.toString(),HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
